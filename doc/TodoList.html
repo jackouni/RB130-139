@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class TodoList - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="Object.html">Object</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    <li ><a href="#method-i-add">#add</a>
+    <li ><a href="#method-i-all_done">#all_done</a>
+    <li ><a href="#method-i-done-21">#done!</a>
+    <li ><a href="#method-i-done-3F">#done?</a>
+    <li ><a href="#method-i-each">#each</a>
+    <li ><a href="#method-i-find_by_title">#find_by_title</a>
+    <li ><a href="#method-i-first">#first</a>
+    <li ><a href="#method-i-item_at">#item_at</a>
+    <li ><a href="#method-i-last">#last</a>
+    <li ><a href="#method-i-mark_all_done">#mark_all_done</a>
+    <li ><a href="#method-i-mark_all_undone">#mark_all_undone</a>
+    <li ><a href="#method-i-mark_done">#mark_done</a>
+    <li ><a href="#method-i-mark_done_at">#mark_done_at</a>
+    <li ><a href="#method-i-mark_undone_at">#mark_undone_at</a>
+    <li ><a href="#method-i-pop">#pop</a>
+    <li ><a href="#method-i-remove_at">#remove_at</a>
+    <li ><a href="#method-i-select">#select</a>
+    <li ><a href="#method-i-shift">#shift</a>
+    <li ><a href="#method-i-size">#size</a>
+    <li ><a href="#method-i-to_a">#to_a</a>
+    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-undone-21">#undone!</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-TodoList">
+  <h1 id="class-TodoList" class="class">
+    class TodoList
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-title" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">title</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(title)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-ivar">@todos</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-3C-3C" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">&lt;&lt;</span><span
+              class="method-args">(new_todo)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="3C-3C-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">&lt;&lt;</span>(<span class="ruby-identifier">new_todo</span>)
+  <span class="ruby-identifier">add</span>(<span class="ruby-identifier">new_todo</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-add" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">add</span><span
+              class="method-args">(*new_todos)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="add-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">new_todos</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_todos</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Todo</span> }
+    <span class="ruby-ivar">@todos</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">new_todos</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;Can only pass Todo objects.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-all_done" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">all_done</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="all_done-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">all_done</span>
+  <span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done?</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-done-21" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">done!</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="done-21-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">done!</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done!</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-done-3F" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">done?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="done-3F-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">done?</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done?</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-each" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">each</span><span
+              class="method-args">(&amp;block)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="each-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">counter</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">counter</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">size</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">todos</span>[<span class="ruby-identifier">counter</span>])
+    <span class="ruby-identifier">counter</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-find_by_title" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">find_by_title</span><span
+              class="method-args">(title_searched)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="find_by_title-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find_by_title</span>(<span class="ruby-identifier">title_searched</span>)
+  <span class="ruby-identifier">title_found</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">title_searched</span>
+      <span class="ruby-identifier">title_found</span> = <span class="ruby-identifier">todo</span>
+      <span class="ruby-keyword">break</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">title_found</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-first" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">first</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="first-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">first</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-item_at" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">item_at</span><span
+              class="method-args">(index)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="item_at-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">item_at</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">size</span> 
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IndexError</span>, <span class="ruby-string">&quot;Index out of range&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">todos</span>[<span class="ruby-identifier">index</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-last" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">last</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="last-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">last</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-mark_all_done" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">mark_all_done</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="mark_all_done-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mark_all_done</span>
+  <span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done!</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-mark_all_undone" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">mark_all_undone</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="mark_all_undone-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mark_all_undone</span>
+  <span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">undone!</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-mark_done" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">mark_done</span><span
+              class="method-args">(todo_title)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="mark_done-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mark_done</span>(<span class="ruby-identifier">todo_title</span>)
+  <span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">title</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">todo_title</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-mark_done_at" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">mark_done_at</span><span
+              class="method-args">(index)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="mark_done_at-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mark_done_at</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">size</span> 
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IndexError</span>, <span class="ruby-string">&quot;Index out of range&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">todos</span>[<span class="ruby-identifier">index</span>].<span class="ruby-identifier">done!</span>
+    <span class="ruby-identifier">todos</span>[<span class="ruby-identifier">index</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-mark_undone_at" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">mark_undone_at</span><span
+              class="method-args">(index)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="mark_undone_at-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mark_undone_at</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">size</span> 
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IndexError</span>, <span class="ruby-string">&quot;Index out of range&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">todos</span>[<span class="ruby-identifier">index</span>].<span class="ruby-identifier">undone!</span>
+    <span class="ruby-identifier">todos</span>[<span class="ruby-identifier">index</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-pop" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">pop</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="pop-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">pop</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">pop</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-remove_at" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">remove_at</span><span
+              class="method-args">(index)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="remove_at-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">remove_at</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">size</span> 
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IndexError</span>, <span class="ruby-string">&quot;Index out of range&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-select" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">select</span><span
+              class="method-args">(&amp;block)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="select-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">select</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">selected</span> = <span class="ruby-constant">TodoList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">title</span>)
+
+  <span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">selected</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">todo</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">todo</span>) 
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">selected</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-shift" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">shift</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="shift-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">shift</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">shift</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-size" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">size</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="size-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">size</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-to_a" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">to_a</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="to_a-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_a</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">clone</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-to_s" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">to_s</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_s</span>
+  <span class="ruby-identifier">string_todos</span> = <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">to_s</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+  <span class="ruby-string">&quot;---- Today&#39;s Todos ----\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">string_todos</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-undone-21" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">undone!</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="undone-21-source">
+            <pre><span class="ruby-comment"># File todo_list.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">undone!</span>
+  <span class="ruby-identifier">todos</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">undone!</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>ruby_challenges - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+
+
+  <ul class="link-list" role="directory">
+              <li>
+            <details open>
+              <summary>      <a href="#label-Question+1-3A">Question 1:</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Test+Cases+Provided-3A">Test Cases Provided:</a>
+          <li>      <a href="#label-Solution-3A">Solution:</a>
+          <li>      <a href="#label---">—</a>
+
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details open>
+              <summary>      <a href="#label-Question+2-3A">Question 2:</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Test+Cases+Provided-3A">Test Cases Provided:</a>
+          <li>      <a href="#label-Solution-3A">Solution:</a>
+
+              </ul>
+            </details>
+          </li>
+
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./README_md.html">README</a>
+    <li><details><summary>coverage</summary>
+    <ul class="link-list">
+      <li><a href="./coverage/assets/0_12_3/application_css.html">application.css</a>
+      <li><a href="./coverage/assets/0_12_3/application_js.html">application.js</a>
+      <li><a href="./coverage/index_html.html">index.html</a>
+    </ul></details>
+    <li><a href="./ruby_challenges_md.html">ruby_challenges</a>
+    <li><a href="./ruby_tools_md.html">ruby_tools</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page ruby_challenges.md">
+
+<h1 id="label-Question+1-3A">Question 1:<span><a href="#label-Question+1-3A">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Test+Cases+Provided-3A">Test Cases Provided:<span><a href="#label-Test+Cases+Provided-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-comment"># TEST CASES</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;minitest/autorun&#39;</span>
+<span class="ruby-identifier">require_relative</span> <span class="ruby-string">&#39;triangles&#39;</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">TriangleTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_equilateral_equal_sides</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2</span>, <span class="ruby-value">2</span>, <span class="ruby-value">2</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;equilateral&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_larger_equilateral_equal_sides</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">10</span>, <span class="ruby-value">10</span>, <span class="ruby-value">10</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;equilateral&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_isosceles_last_two_sides_equal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">4</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;isosceles&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_isosceles_first_last_sides_equal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">4</span>, <span class="ruby-value">3</span>, <span class="ruby-value">4</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;isosceles&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_isosceles_first_two_sides_equal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">4</span>, <span class="ruby-value">4</span>, <span class="ruby-value">3</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;isosceles&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_isosceles_exactly_two_sides_equal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">10</span>, <span class="ruby-value">10</span>, <span class="ruby-value">2</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;isosceles&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_scalene_no_equal_sides</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">5</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;scalene&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_scalene_larger_no_equal_sides</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">10</span>, <span class="ruby-value">11</span>, <span class="ruby-value">12</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;scalene&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_scalene_no_equal_sides_descending</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">5</span>, <span class="ruby-value">4</span>, <span class="ruby-value">2</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;scalene&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_small_triangles_are_legal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0.4</span>, <span class="ruby-value">0.6</span>, <span class="ruby-value">0.3</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;scalene&#39;</span>, <span class="ruby-identifier">triangle</span>.<span class="ruby-identifier">kind</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_no_size_is_illegal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_negative_size_is_illegal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">3</span>, <span class="ruby-value">4</span>, <span class="ruby-value">-5</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_size_inequality_is_illegal</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">3</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_size_inequality_is_illegal_2</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">7</span>, <span class="ruby-value">3</span>, <span class="ruby-value">2</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_size_inequality_is_illegal_3</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">10</span>, <span class="ruby-value">1</span>, <span class="ruby-value">3</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_size_inequality_is_illegal_4</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">triangle</span> = <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Solution-3A">Solution:<span><a href="#label-Solution-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Triangle</span> 
+  <span class="ruby-identifier">attr_reader</span> <span class="ruby-value">:sides</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s2</span>, <span class="ruby-identifier">s3</span>)
+    <span class="ruby-ivar">@sides</span> = [<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s2</span>, <span class="ruby-identifier">s3</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sides</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">side</span><span class="ruby-operator">|</span> <span class="ruby-identifier">side</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span> } 
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">invalid_sides?</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">kind</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">unique_sides</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;equilateral&#39;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;isosceles&#39;</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-string">&#39;scalene&#39;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">private</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">invalid_sides?</span>
+    <span class="ruby-identifier">side_combos</span>   = <span class="ruby-identifier">sides</span>.<span class="ruby-identifier">combination</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_a</span>
+    <span class="ruby-identifier">sum_of_combos</span> = <span class="ruby-identifier">side_combos</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:sum</span>)
+
+    <span class="ruby-identifier">sides</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">side</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sum_of_combos</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span><span class="ruby-operator">|</span> <span class="ruby-identifier">side</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">sum</span> }}
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">unique_sides</span>
+    <span class="ruby-identifier">sides</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label---">—<span><a href="#label---">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h1 id="label-Question+2-3A">Question 2:<span><a href="#label-Question+2-3A">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Test+Cases+Provided-3A">Test Cases Provided:<span><a href="#label-Test+Cases+Provided-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;minitest/autorun&#39;</span>
+<span class="ruby-identifier">require_relative</span> <span class="ruby-string">&#39;point_mutations&#39;</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">DNATest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_no_difference_between_empty_strands</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">0</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_no_difference_between_identical_strands</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">0</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;GGACTGA&#39;</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;GGACTGA&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_complete_hamming_distance_in_small_strand</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">3</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ACT&#39;</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;GGA&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_hamming_distance_in_off_by_one_strand</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">strand</span> = <span class="ruby-string">&#39;GGACGGATTCTGACCTGGACTAATTTTGGGG&#39;</span>
+    <span class="ruby-identifier">distance</span> = <span class="ruby-string">&#39;AGGACGGATTCTGACCTGGACTAATTTTGGGG&#39;</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">19</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">strand</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-identifier">distance</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_small_hamming_distance_in_middle_somewhere</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;GGACG&#39;</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;GGTCG&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_larger_distance</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">2</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;ACCAGGG&#39;</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;ACTATGG&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_ignores_extra_length_on_other_strand_when_longer</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">3</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;AAACTAGGGG&#39;</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;AGGCTAGCGGTAGGAC&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_ignores_extra_length_on_original_strand_when_longer</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">strand</span> = <span class="ruby-string">&#39;GACTACGGACAGGGTAGGGAAT&#39;</span>
+    <span class="ruby-identifier">distance</span> = <span class="ruby-string">&#39;GACATCGCACACC&#39;</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">5</span>, <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">strand</span>).<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-identifier">distance</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_does_not_actually_shorten_original_strand</span>
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">dna</span> = <span class="ruby-constant">DNA</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;AGACAACAGCCAGCCGCCGGATT&#39;</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">dna</span>.<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;AGGCAA&#39;</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">4</span>, <span class="ruby-identifier">dna</span>.<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;AGACATCTTTCAGCCGCCGGATTAGGCAA&#39;</span>)
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">dna</span>.<span class="ruby-identifier">hamming_distance</span>(<span class="ruby-string">&#39;AGG&#39;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Solution-3A">Solution:<span><a href="#label-Solution-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">DNA</span> 
+  <span class="ruby-identifier">attr_reader</span> <span class="ruby-value">:strand</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">strand</span>)
+    <span class="ruby-ivar">@strand</span> = <span class="ruby-identifier">strand</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">hamming_distance</span>(<span class="ruby-identifier">comparison_strand</span>)
+    <span class="ruby-identifier">differences</span> = <span class="ruby-value">0</span>
+
+    <span class="ruby-identifier">strand</span>.<span class="ruby-identifier">chars</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">point</span>, <span class="ruby-identifier">ind</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ind</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">comparison_strand</span>.<span class="ruby-identifier">size</span> 
+      <span class="ruby-identifier">differences</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">point</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">comparison_strand</span>[<span class="ruby-identifier">ind</span>]
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">differences</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

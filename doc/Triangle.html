@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Triangle - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="Object.html">Object</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-kind">#kind</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Triangle">
+  <h1 id="class-Triangle" class="class">
+    class Triangle
+  </h1>
+
+  <section class="description">
+    
+<p>Write a program to determine whether a triangle is equilateral, isosceles, or scalene.</p>
+
+<p>An equilateral triangle has all three sides the same length.</p>
+
+<p>An isosceles triangle has exactly two sides of the same length.</p>
+
+<p>A scalene triangle has all sides of different lengths.</p>
+
+<p>Note: For a shape to be a triangle at all, all sides must be of length &gt; 0,  and the sum of the lengths of any two sides must be greater than the length of the third side.</p>
+
+<p>P</p>
+
+<pre>Input  -&gt; Triangle object (instantiated with side lengths)
+Output -&gt; String (representing the type of Triangle)</pre>
+
+<p>DS</p>
+
+<pre>Array (of lengths) --&gt; Integers (representing the sides) --&gt; String (describing kind of triangle)</pre>
+
+<p>ALGO</p>
+
+<pre>*** Whether a Triangle is a legitimate Triangle, this can be calculated at initialization of a Triangle.
+(IF all values must be greater than 0 &amp;&amp; sum of any two sides must be greater than the length of the third side)
+
+1. CREATE `Triangle#kind`
+  a) Accesses the `sides` of the Triangle instance
+  b) Determines cases:
+    - Are all side values equal? THEN RETURN &#39;equilateral&#39;
+    - Are two side values equal? THEN RETURN &#39;isosceles&#39;
+    - Are all side values different? THEN RETURN &#39;scalene&#39;</pre>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-sides" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">sides</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(s1, s2, s3)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File triangles_problem.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s2</span>, <span class="ruby-identifier">s3</span>)
+  <span class="ruby-ivar">@sides</span> = [<span class="ruby-identifier">s1</span>, <span class="ruby-identifier">s2</span>, <span class="ruby-identifier">s3</span>]
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">sides</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">side</span><span class="ruby-operator">|</span> <span class="ruby-identifier">side</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span> } 
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">invalid_sides?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-kind" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">kind</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="kind-source">
+            <pre><span class="ruby-comment"># File triangles_problem.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">kind</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">unique_sides</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;equilateral&#39;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&#39;isosceles&#39;</span>
+  <span class="ruby-keyword">else</span> <span class="ruby-string">&#39;scalene&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -59,5 +59,3 @@ class Triangle
     sides.uniq.size
   end
 end
-
-p (0.5 + 1.5) % 1
