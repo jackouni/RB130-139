@@ -9,6 +9,14 @@ You can check what version of Ruby is installed on your Mac machine using the te
 
 This is usually not optimal though, as the version of Ruby installed with MacOS is probably outdated. On top of this, the Ruby that is on your Mac needs root access to make any modifications to other Ruby components you may have installed. Ideally developers want to avoid directly logging in as root user, and sometimes developers don't have access to root user privelages which can make this hard to use.
 
+
+
+---
+
+---
+
+
+
 # Terminology
 
 "**DSL (Domain Specific Language)**"
@@ -23,15 +31,21 @@ This is usually not optimal though, as the version of Ruby installed with MacOS 
 "**Assertion**"
 > You can think of an "*assertion*" a way to verify/check if specific data in your code returns an expected output, given some conditions. An assertion allows us to test an assumption about our code to see if it's true.
 
+
+
 ---
 
 ---
+
+
 
 # Minitest
 
 This is the standard testing software for Ruby. 
 
 There is also RSpec, but Minitest is Ruby's standard testing library.
+
+
 
 ### Installation of Minitest
 
@@ -40,6 +54,8 @@ To install MiniTest run the command: `gem install minitest`
 To check what version you have run command: `gem list minitest`
 
 To install a specific version of minitest run: `gem install minitest -v <version number>`
+
+
 
 ### Setting up
 
@@ -89,6 +105,8 @@ There are a bunch of *assertion methods* that come with Minitest. It can be assu
 `assert_equal` takes 2 arguments:
 1. The value you expect
 2. The test value
+
+
 
 ### Reading Outputs
 
@@ -155,6 +173,8 @@ require "minitest/reporters" # Loads the files to color-code your test outputs
 Minitest::Reporters.use!     # Method call that invokes the use of the color-coding
 ```
 
+
+
 ### Skipping a Test
 
 Sometimes you'll want to skip certain tests for whatever reasons. To skip a test all you have to do is add the `skip` method call within the test methods.
@@ -179,6 +199,8 @@ end
 
 This will skip the `test_name` test and will be shown as a 'skip' in the Minitest output.
 
+
+
 ### Types of Assertions
 
 | Assertion                        | Description |
@@ -190,3 +212,231 @@ This will skip the `test_name` test and will be shown as a 'skip' in the Minites
 | assert_instance_of(cls, obj)     | Fails unless obj is an instance of cls. |
 | assert_includes(collection, obj) | Fails unless collection includes obj. |
 
+##### `#assert(arg)`
+> If the `arg` is truthy, the test passes, otherwise it fails.
+>
+>**Example:**
+>```ruby
+>class PersonTest < Minitest::Test 
+>  def test_instantiation
+>    joe = Person.new('Joe', 30)   
+>    assert(joe) 
+>  end
+>end
+>```
+
+##### `#assert_equal(expected, actual)`
+> If `expected` is equal in value to `actual` (`expected == actual`), then the test passes, otherwise it fails.
+>
+>**Example:**
+>```ruby
+>class PersonTest < Minitest::Test 
+>  def test_name 
+>    joe = Person.new('Joe', 30)   
+>    assert_equal('Joe', joe.name) 
+>  end
+>end
+>```
+
+##### `#assert_nil(arg)`
+> The test passes if `arg` is equal to `nil`, otherwise the test fails.
+>
+>**Example:**
+>```ruby
+>class PersonTest < Minitest::Test 
+>  def test_undefined_age 
+>    joe = Person.new('Joe')   
+>    assert(joe.age) 
+>  end
+>end
+>```
+
+##### `#assert_raises(*error) {...}`
+> The test passes if the given block raises one of the `error` passed, otherwise the test fails
+>
+>**Example:**
+>```ruby
+>class PersonTest < Minitest::Test 
+>  def test_too_many_arguments 
+>   assert_raises(ArgumentError) do  
+>     joe = Person.new('Joe', 30, 100)
+>   end  
+>  end
+>end
+>```
+
+##### `#assert_instance_of(class, obj)`
+> Test passes if `obj` is an instance of `class`, otherwise the test fails.
+>
+>**Example:**
+>```ruby
+>class PersonTest < Minitest::Test 
+>  def test_person_instance_of
+>   joe = Person.new('Joe', 30)
+>   assert_instance_of(Person, joe)
+>  end
+>end
+>```
+
+##### `#assert_includes(collection, obj)`
+> The test passes if `obj` is included in the `collection`, otherwise it fails.
+>
+>**Example:**
+>```ruby
+>class PersonTest < Minitest::Test 
+>  def test_including_person
+>   joe = Person.new('Joe', 30)
+>   arr = [1, 2, 3]
+>   arr << joe
+>   assert_includes(arr, joe)
+>  end
+>end
+>```
+
+
+
+---
+
+---
+
+
+
+# The SEAT Approach
+
+In the above examples we had to recreate our `Person` object for each test. This is tedious and can take up a lot of time. This is where the **S E A T** approach comes in!
+
+*SEAT* is a series of steps that happen between each test that runs that allows for cleaner and more efficient testing. There are 4 main steps to *SEAT*:
+
+1. **S - Set up** 
+
+This involves setting up the test objects and/or conditions we want for our tests
+
+2. **E - Execute** 
+
+This is where we execute the code in our tests
+
+3. **A - Assertions** 
+
+This is where we check our assertions for a given test
+
+4. **T - Tear Down** 
+
+This is where we tear down all of our objects and conditions we had set up for the given test, getting rid of any left over artifacts.
+
+So far we've been doing steps 2 and 3. Here's how we can use step 1 in our test:
+
+```ruby
+class PersonTest < Minitest::Test 
+
+  def setup # This is where our tests will setup every time
+    @joe = Person.new('Joe', 30)
+  end
+
+  def test_name    
+    assert_equal('Joe', @joe.name) 
+  end
+
+  def test_age
+    assert(30 == @joe.age)
+  end
+
+  def test_instantiation   
+    assert(@joe) 
+  end
+
+  def test_too_many_arguments 
+   assert_raises(ArgumentError) do  
+     Person.new('James', 31, 100)
+   end  
+  end
+
+  def test_person_instance_of
+   assert_instance_of(Person, @joe)
+  end
+
+  def test_including_person
+   arr = [1, 2, 3]
+   arr << @joe
+   assert_includes(arr, @joe)
+  end
+end
+```
+
+By defining a `setup` instance method, Minitest will invoke this for each test that runs. This will reassign a new instance of `Person`. This functions as both the *Setup* and the *Tear Down*.
+
+---
+
+---
+
+# Notes on Comparing Equality
+
+When we use these `assert` methods, how is it comparing the arguments passed? 
+
+Remembering that custom made objects by default will use the method `BasicObject#==` to compare equality. This means it's comparing two objects based on if they are the ***exact*** same (same `object_id`).
+
+So if you are going to use these `assert` methods you need to make sure you define a `#==` method to compare any two instances of a custom made class you're testing.
+
+**Example:**
+```ruby
+class PersonTest < Minitest::Test 
+  def test_name    
+    person1 = Person.new('Joe', 30)
+    person2 = Person.new('Joe', 30)
+    assert_equal(person2, person1) 
+  end
+end
+```
+
+This test will fail. Here's what it will roughly output:
+
+```
+Run options: --seed 39620
+
+# Running:
+
+F
+
+Finished in 0.019319s, 51.7625 runs/s, 51.7625 assertions/s.
+
+  1) Failure:
+PersonTest#test_name [tests.rb:20]:
+No visible difference in the Person#inspect output.
+You should look at the implementation of #== on Person or its members.
+#<Person:0xXXXXXX @name="Joe", @age=30>
+
+1 runs, 1 assertions, 1 failures, 0 errors, 0 skips
+```
+
+Here ^^ Minitest is literally telling you what the problem is. It's explaining that it doesn't know how to compare two `Person` objects and is suggesting the implementtion of a `Person#==` method.
+
+Let's take its advice and do just that:
+
+```ruby
+class Person
+  attr_accessor :name, :age
+  
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  def ==(other_person)
+    other_person.instance_of?(Person) && 
+    name == other_person.name && 
+    age == other_person.age
+  end
+end
+```
+
+Now that we've added a `Person#==` method, there's now a way for Minitest to compare two `Person` instances in the way we want it to. Now we get our typical passing-tests output:
+```
+Run options: --seed 3530
+
+# Running:
+
+.
+
+Finished in 0.000505s, 1980.1980 runs/s, 1980.1980 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+```
