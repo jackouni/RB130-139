@@ -13,7 +13,7 @@ class Todo
   def done!
     self.done = true
   end
-
+ 
   def undone!
     self.done = false
   end
