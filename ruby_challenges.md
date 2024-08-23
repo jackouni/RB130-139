@@ -1,3 +1,5 @@
+# Easy 1 & 2
+
 # Question 1:
 
 ## Test Cases Provided:
@@ -380,3 +382,75 @@ end
 
 ---
 ---
+---
+---
+
+# Medium 1
+
+# Question 1:
+
+## Test Cases Provided:
+```ruby
+listener = Device.new
+listener.listen { "Hello World!" }
+listener.listen
+listener.play # Outputs "Hello World!"
+```
+
+## Solution:
+```ruby
+class Device
+  def initialize
+    @recordings = []
+  end
+
+  def record(recording)
+    @recordings << recording
+  end
+
+  def listen
+    record(yield) if block_given?
+  end
+
+  def play
+    @recordings.last
+  end
+end
+```
+
+---
+---
+
+# Question 2
+
+## Test Cases
+```ruby
+analyzer = TextAnalyzer.new
+analyzer.process { } # your implementation
+analyzer.process { } # your implementation
+analyzer.process { } # your implementation
+
+# Should output something similar to (reference sample_text.txt):
+# 3 paragraphs
+# 15 lines
+# 126 words
+```
+
+## Solution:
+```ruby
+class TextAnalyzer
+  def initialize(path)
+    @path = path
+  end
+
+  def process
+    File.open(@path) { |file| yield(file) }
+  end
+end
+
+analyzer = TextAnalyzer.new("sample_text.txt")
+analyzer.process { |file| puts "#{file.readlines.count("\n") + 1} paragraphs" }
+analyzer.process { |file| puts "#{file.readlines.size} lines" } 
+analyzer.process { |file| puts "#{file.read.split.size} words" }
+```
+
