@@ -454,3 +454,39 @@ analyzer.process { |file| puts "#{file.readlines.size} lines" }
 analyzer.process { |file| puts "#{file.read.split.size} words" }
 ```
 
+---
+---
+
+# Question 3: 
+
+## Test Cases Provided:
+```ruby
+# Method should do: raven, finch, *raptors = %w(raven finch hawk eagle)
+p raven    # => 'raven'
+p finch    # => 'finch'
+p raptors  # => ['hawk','eagle']
+```
+
+## Solution:
+```ruby
+# DESTRUCTURING WITHIN THE BLOCK:
+def last_elements(arr)
+  yield(arr)
+end
+
+birds = %w(raven finch hawk eagle)
+
+hawk_and_eagle = last_elements(birds) { |_, _, *others| others }
+hawk_and_eagle #=> ['hawk', 'eagle']
+
+# OR YOU CAN DESTRUCTURE IN THE METHOD LIKE THIS:
+def last_elements(arr)
+  discard1, discard2, *keep = arr
+  yield(keep)
+end
+
+birds = %w(raven finch hawk eagle)
+
+hawk_and_eagle = last_elements(birds) { |prey| prey }
+hawk_and_eagle #=> ['hawk', 'eagle']
+```
