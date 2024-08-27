@@ -258,7 +258,7 @@ analyzer.process { |file| puts "#{file.read.split.size} words" }
 ---
 ---
 
-# Question 3: 
+# Question 4: "Passing Parameters Part 2" 
 
 ## Test Cases Provided:
 ```ruby
@@ -295,3 +295,34 @@ hawk_and_eagle #=> ['hawk', 'eagle']
 ---
 ---
 
+# Question 6: "Method to Proc" 
+
+## Test Cases Provided:
+```ruby
+[8, 10, 12, 14, 16, 33].map(&a_proc_placeholder) 
+# Method call above should return:
+# => [10, 12, 14, 16, 20, 41]
+
+[8, 10, 12, 14, 16, 33].map(&a_proc_placeholder) == [10, 12, 14, 16, 20, 41] # => True
+```
+
+## Solution:
+```ruby
+# SOLUTION #1:
+def convert_to_base_8(n)
+  n.to_s(8).to_i
+end
+
+base8_proc = method(:convert_to_base_8).to_proc
+
+answer    = [8, 10, 12, 14, 16, 33].map(&base8_proc) 
+p answer == [10, 12, 14, 16, 20, 41] #=> true
+
+# SOLUTION #2:
+def convert_to_base_8(n)
+  n.to_s(8).to_i
+end
+
+answer    = [8, 10, 12, 14, 16, 33].map(&method(:convert_to_base_8)) 
+p answer == [10, 12, 14, 16, 20, 41] #=> true
+```
