@@ -1115,3 +1115,201 @@ end
 ---
 ---
 
+# Question 10: "Series"
+
+## Test Cases:
+```ruby
+require 'minitest/autorun'
+require_relative 'series'
+
+class SeriesTest < Minitest::Test
+  def test_simple_slices_of_one
+    series = Series.new('01234')
+    assert_equal [[0], [1], [2], [3], [4]], series.slices(1)
+  end
+
+  def test_simple_slices_of_one_again
+    skip
+    series = Series.new('92834')
+    assert_equal [[9], [2], [8], [3], [4]], series.slices(1)
+  end
+
+  def test_simple_slices_of_two
+    skip
+    series = Series.new('01234')
+    assert_equal [[0, 1], [1, 2], [2, 3], [3, 4]], series.slices(2)
+  end
+
+  def test_other_slices_of_two
+    skip
+    series = Series.new('98273463')
+    expected = [[9, 8], [8, 2], [2, 7], [7, 3], [3, 4], [4, 6], [6, 3]]
+    assert_equal expected, series.slices(2)
+  end
+
+  def test_simple_slices_of_two_again
+    skip
+    series = Series.new('37103')
+    assert_equal [[3, 7], [7, 1], [1, 0], [0, 3]], series.slices(2)
+  end
+
+  def test_simple_slices_of_three
+    skip
+    series = Series.new('01234')
+    assert_equal [[0, 1, 2], [1, 2, 3], [2, 3, 4]], series.slices(3)
+  end
+
+  def test_simple_slices_of_three_again
+    skip
+    series = Series.new('31001')
+    assert_equal [[3, 1, 0], [1, 0, 0], [0, 0, 1]], series.slices(3)
+  end
+
+  def test_other_slices_of_three
+    skip
+    series = Series.new('982347')
+    expected = [[9, 8, 2], [8, 2, 3], [2, 3, 4], [3, 4, 7]]
+    assert_equal expected, series.slices(3)
+  end
+
+  def test_simple_slices_of_four
+    skip
+    series = Series.new('01234')
+    assert_equal [[0, 1, 2, 3], [1, 2, 3, 4]], series.slices(4)
+  end
+
+  def test_simple_slices_of_four_again
+    skip
+    series = Series.new('91274')
+    assert_equal [[9, 1, 2, 7], [1, 2, 7, 4]], series.slices(4)
+  end
+
+  def test_simple_slices_of_five
+    skip
+    series = Series.new('01234')
+    assert_equal [[0, 1, 2, 3, 4]], series.slices(5)
+  end
+
+  def test_simple_slices_of_five_again
+    skip
+    series = Series.new('81228')
+    assert_equal [[8, 1, 2, 2, 8]], series.slices(5)
+  end
+
+  def test_simple_slice_that_blows_up
+    skip
+    series = Series.new('01234')
+    assert_raises ArgumentError do
+      series.slices(6)
+    end
+  end
+
+  def test_more_complicated_slice_that_blows_up
+    skip
+    slice_string = '01032987583'
+
+    series = Series.new(slice_string)
+    assert_raises ArgumentError do
+      series.slices(slice_string.length + 1)
+    end
+  end
+end
+```
+
+## Solutions:
+```ruby
+=begin  
+P
+  IP -> String (of digits) ; Integer (the number of consecutive digits from String to retrieve)
+  OP -> 2D Array (Subarrys of all consecutive digits of the Input Integer length, from the input String)
+
+  Terms:
+    - Throw an ArgumentError if the Integer input is greater than the length of the String of digits
+    - Numbers do not need to be in numerical order, just consecutive in their order in the input String
+    - NO TEST CASE: for non-numerical digits in input String
+
+DS
+  Input String --> Array (of chars) --> Array (individual digits) --> Output 2D Array (of consecutive digits)
+
+ALGO
+** n == input integer
+
+  0.5 THROW ERROR if n > input String size
+  1. CONVERT input String into Array of digits
+  2. GET Consecutive slices from Array of digits
+    **GO OVER each index of digits up to [digits.size - n]
+      -- BREAK IF index == n (digits.size - n)
+      -- STORE slice from current index to: n number of elements || current index  + (n-1)
+  3. RETURN stored 2D Array of slices
+=end
+
+# SOLUTION #1:
+class Series
+  def initialize(nums)
+    @nums = nums
+  end
+
+  def slices(n)
+    raise ArgumentError if n > @nums.size
+    digits = @nums.chars.map(&:to_i)
+    digits.each_cons(n).to_a
+  end
+end
+
+# SOLUTION #2:
+class Series
+  def initialize(nums)
+    @nums = nums
+  end
+
+  def slices(n)
+    raise ArgumentError if n > @nums.size
+    digits = @nums.chars.map(&:to_i)
+
+    digits.map.with_index do |_, ind|
+      ind > @nums.size - n ? nil : digits[ind, n]
+    end.compact
+  end
+end 
+
+# SOLUTION #3 (manual iteration):
+class Series
+  def initialize(nums)
+    @nums = nums
+  end
+
+  def slices(n)
+    raise ArgumentError if n > @nums.size
+    counter = 0
+    consecutives = []
+
+    while counter <= @nums.size - n do
+      slice = @nums[counter, n].chars
+      consecutives << slice.map(&:to_i)
+      counter += 1
+    end
+
+    consecutives
+  end
+
+  # SOLUTION #4:
+  class Series
+    def initialize(nums)
+      @nums = nums.chars.map(&:to_i)
+    end
+
+    def slices(n)
+      raise ArgumentError if n > @nums.size
+      @nums.each_cons(n).to_a
+    end
+  end 
+```
+
+---
+---
+---
+---
+
+# Medium Challenges:
+
+
