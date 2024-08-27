@@ -1,4 +1,4 @@
-# Easy 1:
+# Easy Challenges:
 
 # Question 1:
 
@@ -386,7 +386,6 @@ end
 # Question 6: "Perfect Number"
 
 ## Test Cases:
-
 ```ruby
 require 'minitest/autorun'
 require_relative 'perfect_numbers'
@@ -434,6 +433,252 @@ end
 
 ---
 ---
+
+# Question 7: "Octal"
+
+## Test Cases:
+
+```ruby
+class OctalTest < Minitest::Test
+  def test_octal_1_is_decimal_1
+    assert_equal 1, Octal.new('1').to_decimal
+  end
+
+  def test_octal_10_is_decimal_8
+    skip
+    assert_equal 8, Octal.new('10').to_decimal
+  end
+
+  def test_octal_17_is_decimal_15
+    skip
+    assert_equal 15, Octal.new('17').to_decimal
+  end
+
+  def test_octal_11_is_decimal_9
+    skip
+    assert_equal 9, Octal.new('11').to_decimal
+  end
+
+  def test_octal_130_is_decimal_88
+    skip
+    assert_equal 88, Octal.new('130').to_decimal
+  end
+
+  def test_octal_2047_is_decimal_1063
+    skip
+    assert_equal 1063, Octal.new('2047').to_decimal
+  end
+
+  def test_octal_7777_is_decimal_4095
+    skip
+    assert_equal 4095, Octal.new('7777').to_decimal
+  end
+
+  def test_octal_1234567_is_decimal_342391
+    skip
+    assert_equal 342_391, Octal.new('1234567').to_decimal
+  end
+
+  def test_invalid_octal_is_decimal_0
+    skip
+    assert_equal 0, Octal.new('carrot').to_decimal
+  end
+
+  def test_8_is_seen_as_invalid_and_returns_0
+    skip
+    assert_equal 0, Octal.new('8').to_decimal
+  end
+
+  def test_9_is_seen_as_invalid_and_returns_0
+    skip
+    assert_equal 0, Octal.new('9').to_decimal
+  end
+
+  def test_6789_is_seen_as_invalid_and_returns_0
+    skip
+    assert_equal 0, Octal.new('6789').to_decimal
+  end
+
+  def test_abc1z_is_seen_as_invalid_and_returns_0
+    skip
+    assert_equal 0, Octal.new('abc1z').to_decimal
+  end
+
+  def test_valid_octal_formatted_string_011_is_decimal_9
+    skip
+    assert_equal 9, Octal.new('011').to_decimal
+  end
+
+  def test_234abc_is_seen_as_invalid_and_returns_0
+    skip
+    assert_equal 0, Octal.new('234abc').to_decimal
+  end
+end
+```
+
+## Solution:
+```ruby
+=begin  
+P
+  IP -> Integer (In Octal Number format)
+  OP -> Integer (In Decimal Number format)
+
+  Terms:
+    Decimal:
+      Each digit (starting from the rightmost) gets multipled by 10^n-1 (n representing the digits' index)
+      Example:
+        517
+        5*10^2 + 1*10^1 + 7*10^0
+        5*100  + 1*10   + 7*1
+        500    + 10     + 7
+        = 517
+
+    Octal:
+      Same as decimal except, instead of 10 we use 8
+      Example
+        517
+        5*8^2 + 1*8^1 + 7*8^0
+        5*64   + 1*8   + 7*1
+        320    + 8     + 7
+        = 327
+
+    Rules:
+      - IF input is 0 or anything else RETURN 0
+
+DS
+  IP Integer --> Array (of digits) --> Array (of digits to octal values)
+  --> OP Integer (sum of ARray of octal values)
+
+ALGO
+  1. IF Input is 0 || anything else other than an Integer RETURN 0
+  2. CONVERT input to Array of digits
+  3. CONVERT each digit to octal value
+  4. RETURN sum of octal values
+=end
+
+class Octal
+  def initialize(num)
+    @num = num
+  end
+
+  def to_decimal 
+    return 0 unless valid_octal?
+    digits = @num.to_i.digits
+    digits.map.with_index { |digit, ind| digit * 8**ind }.sum
+  end
+
+  def valid_octal?
+    @num.chars.all? { |char| char =~ /[0-7]/ }
+  end
+end
+```
+
+---
+---
+
+# Question 8: "Sum Of Multiples"
+
+## Test Cases:
+```ruby
+require 'minitest/autorun'
+require_relative 'sum_of_multiples'
+
+class SumTest < Minitest::Test
+  def test_sum_to_1
+    assert_equal 0, SumOfMultiples.to(1)
+  end
+
+  def test_sum_to_3
+    skip
+    assert_equal 3, SumOfMultiples.to(4)
+  end
+
+  def test_sum_to_10
+    skip
+    assert_equal 23, SumOfMultiples.to(10)
+  end
+
+  def test_sum_to_100
+    skip
+    assert_equal 2_318, SumOfMultiples.to(100)
+  end
+
+  def test_sum_to_1000
+    skip
+    assert_equal 233_168, SumOfMultiples.to(1000)
+  end
+
+  def test_configurable_7_13_17_to_20
+    skip
+    assert_equal 51, SumOfMultiples.new(7, 13, 17).to(20)
+  end
+
+  def test_configurable_4_6_to_15
+    skip
+    assert_equal 30, SumOfMultiples.new(4, 6).to(15)
+  end
+
+  def test_configurable_5_6_8_to_150
+    skip
+    assert_equal 4419, SumOfMultiples.new(5, 6, 8).to(150)
+  end
+
+  def test_configurable_43_47_to_10000
+    skip
+    assert_equal 2_203_160, SumOfMultiples.new(43, 47).to(10_000)
+  end
+end
+```
+
+## Solution:
+```ruby
+=begin  
+P
+  IP -> Integer (Target Number), Integers (Sets of numbers)
+  OP -> Integer (Sum of multiples of the set of numbers up to the target number)
+
+  Terms & Rules:
+    - IF there is no set of numbers given, use 3 & 5 as a default
+    - NO duplicate multiples. Each multiple is unique
+
+DS
+  Target Integer --> Range (1..target-1) --> Array (Of numbers from range that are multiples of set numbers)
+  --> Integer (sum of Array of multiples)
+
+ALGO
+  1. CREATE a Range from Target Number
+  2. INIT multiples = []
+  3. SELECT all multiples of set from Range
+    **GO OVER each number in Range
+      -- IF #any? number is a multiple of the set THEN add to multiples OR STORE
+      -- ELSE GO NEXT
+  4. IF multiples is empty RETURN 0
+  5. ELSE RETURN sum of multiples
+=end
+
+class SumOfMultiples
+  attr_reader :set
+
+  def initialize(*set)
+    @set = (set.empty? ? [3, 5] : set)
+  end
+
+  def self.to(target)
+    range = (1..target-1)
+    range.select { |num| [3, 5].any? { |set_num| num % set_num == 0 } }.sum
+  end
+
+  def to(target)
+    range = (1..target-1)
+    range.select { |num| set.any? { |set_num| num % set_num == 0 } }.sum
+  end
+end
+```
+
+---
+---
+
+
 ---
 ---
 
