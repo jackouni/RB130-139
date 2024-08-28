@@ -570,7 +570,7 @@ class Octal
   def valid_octal?
     @num.chars.all? { |char| char =~ /[0-7]/ }
   end
-end
+end 
 ```
 
 ---
@@ -1312,4 +1312,285 @@ class Series
 
 # Medium Challenges:
 
+## Question 1: "Diamond"
 
+## Test Cases:
+```ruby
+require 'minitest/autorun'
+require_relative '10_diamond'
+
+class DiamondTest < Minitest::Test
+  def test_letter_a
+    answer = Diamond.make_diamond('A')
+    assert_equal "A\n", answer
+  end
+
+  def test_letter_b
+    skip
+    answer = Diamond.make_diamond('B')
+    assert_equal " A \nB B\n A \n", answer
+  end
+
+  def test_letter_c
+    skip
+    answer = Diamond.make_diamond('C')
+    string = "  A  \n"\
+             " B B \n"\
+             "C   C\n"\
+             " B B \n"\
+             "  A  \n"
+    assert_equal string, answer
+  end
+
+  def test_letter_e
+    skip
+    answer = Diamond.make_diamond('E')
+    string = "    A    \n"\
+             "   B B   \n"\
+             "  C   C  \n"\
+             " D     D \n"\
+             "E       E\n"\
+             " D     D \n"\
+             "  C   C  \n"\
+             "   B B   \n"\
+             "    A    \n"
+    assert_equal string, answer
+  end
+end
+```
+
+## Solution:
+```ruby
+=begin  
+P
+  IP -> String (A single letter)
+  OP -> String (of letters printed starting from A and ending in A)
+
+  Terms:
+    - The first row contains one 'A'.
+    - The last row contains one 'A'.
+    - All rows, except the first and last, have exactly two identical letters.
+    - The diamond is horizontally symmetric.
+    - The diamond is vertically symmetric.
+    - The diamond has a square shape (width equals height).
+    - The letters form a diamond shape.
+    - The top half has the letters in ascending order.
+    - The bottom half has the letters in descending order.
+    - The four corners (containing the spaces) are triangles.
+
+    - IF input letter is 'A' Return "A\n"
+
+DS
+  * Input String 
+  * Array (of upcased letters)
+
+ALGO
+
+  Diamond Rules:
+    A      -- 0 Spaces middle  ; 4 Spaces sides ; 1 letter  ; ind 0
+   B B     -- 1 Space middle   ; 3 Spaces sides ; 2 letters ; ind 1
+  C   C    -- 3 Spaces middle  ; 2 Spaces sides ; 2 letters ; ind 2 
+ D     D   -- 5 Spaces middle  ; 1 Spaces sides ; 2 letters ; ind 3
+E       E  -- 7 Spaces middle  ; 0 Spaces sides ; 2 letters ; ind 4
+          1. Middle spaces == ind + previous ind
+          2. Side spaces   == last ind - ind
+
+ D     D  3. Reverse: (First half - last line) 
+  C   C
+   B B
+    A
+          
+  Steps:
+  ** INIT results = []
+  1. GET index of input letter
+  2. GET ALPHABET slice from 'A' to index of input letter
+  
+  4. GO OVER each letter with index of slice
+    a) GET middle_spaces
+    -- IF letter == 'A' THEN 0
+    ELSE current ind + (current ind-1)
+    b) GET side spaces
+    -- last ind - current ind
+    c) STORE formatted String in results
+    -- side spaces + current letter + middle spaces + current letter + side spaces
+  
+  5. IF input letter is 'A' THEN RETURN "A\n"
+
+  6. GET second half of results 
+    -- GET results slice from First to 2nd last element
+    -- CONVERT results slice to be reversed
+    -- STORE reversed results slice
+
+  7. RETURN results joined
+=end
+
+class Diamond
+  def self.make_diamond(last_letter)
+    return "A\n" if last_letter == 'A'
+
+    letters  = ('A'..last_letter).to_a
+    
+    top_half     = Diamond.top_half(letters)
+    bottom_half  = top_half[0...-1].reverse 
+    full_diamond = top_half + bottom_half
+    full_diamond.join
+  end
+
+  private
+
+  def self.middle_spaces(ind)
+    return "" if ind.zero? 
+    " " * (ind * 2 - 1)
+  end
+  
+  def self.side_spaces(ind, last_ind)
+    " " * (last_ind - ind)
+  end
+
+  def self.top_half(letters)
+    last_ind = letters.size - 1
+
+    letters.map.with_index do |letter, ind|
+      middle_spaces  = Diamond.middle_spaces(ind)
+      side_spaces    = Diamond.side_spaces(ind, last_ind)
+
+      if letter == 'A'
+        side_spaces + letter + side_spaces + "\n"
+      else 
+        side_spaces + letter + middle_spaces + letter + side_spaces + "\n"
+      end
+    end
+  end
+end
+```
+
+---
+---
+
+# Question 2: "Robot Name":
+
+## Test Cases:
+```ruby
+require 'minitest/autorun'
+require_relative 'robot_name'
+
+class RobotTest < Minitest::Test
+  DIFFERENT_ROBOT_NAME_SEED = 1234
+  SAME_INITIAL_ROBOT_NAME_SEED = 1000
+
+  NAME_REGEXP = /^[A-Z]{2}\d{3}$/
+
+  def test_has_name
+    assert_match NAME_REGEXP, Robot.new.name
+  end
+
+  def test_name_sticks
+    skip
+    robot = Robot.new
+    robot.name
+    assert_equal robot.name, robot.name
+  end
+
+  def test_different_robots_have_different_names
+    skip
+    Kernel.srand DIFFERENT_ROBOT_NAME_SEED
+    refute_equal Robot.new.name, Robot.new.name
+  end
+
+  def test_reset_name
+    skip
+    Kernel.srand DIFFERENT_ROBOT_NAME_SEED
+    robot = Robot.new
+    name = robot.name
+    robot.reset
+    name2 = robot.name
+    refute_equal name, name2
+    assert_match NAME_REGEXP, name2
+  end
+
+  def test_different_name_when_chosen_name_is_taken
+    skip
+    Kernel.srand SAME_INITIAL_ROBOT_NAME_SEED
+    name1 = Robot.new.name
+    Kernel.srand SAME_INITIAL_ROBOT_NAME_SEED
+    name2 = Robot.new.name
+    refute_equal name1, name2
+  end
+end
+```
+
+## Solution:
+```ruby
+=begin  
+P
+  IP --> Robot.new (instantiation of a Robot creates a unique random name)
+  OP --> String (random name)
+
+  Terms:
+    - Robot#name returns Robot's @name
+    - Robot#reset resets the Robot's @name to a NEW/UNIQUE name
+    - Every time a new Robot is instantiated it is given a random name. This is a unique name that should not be the same name as
+    another Robot.
+
+    Rules for naming:
+      1. Must be unique to other names created for all other Robots (class var?)
+      2. Must start with 2 uppercase letters, followed by 3 digits (0-9)
+
+ALGO
+  ** INIT @@names
+  1. Instantiating a new Robot with name:
+    a) LOOP until unique name is made:
+      -- GET random 2 upcase letters
+      -- GET random 3 digits
+      -- CONCATENATE random letters with digits to get a random_name
+      -- IF @@names **does not** include random_name THEN BREAK
+
+    b) SET @name = random_name
+    c) PUSH random_name to @@names
+
+  2. Robot#reset
+      a) LOOP until unique name is made:
+        -- GET random 2 upcase letters
+        -- GET random 3 digits
+        -- CONCATENATE random letters with digits to get a random_name
+        -- IF @@names **does not** include random_name THEN BREAK
+
+      b) SET @name = random_name 
+=end
+
+class Robot
+  LETTERS = ('A'..'Z').to_a
+  NUMBERS = ('0'..'9').to_a
+  @@taken_names = []
+
+  def name
+    return @name if @name
+    @name = generate_name
+  end
+
+  def reset
+    @@taken_names.delete(@name)
+    @name = nil
+  end
+
+  private
+  
+  def generate_name
+    random_name = ''
+
+    loop do
+      random_letters = ''
+      2.times { random_letters << LETTERS.sample }
+    
+      random_numbers = ''
+      3.times { random_numbers << NUMBERS.sample }
+    
+      random_name = random_letters + random_numbers
+      break unless @@taken_names.include?(random_name)
+    end
+
+    @@taken_names << random_name
+    random_name
+  end
+end
+```
