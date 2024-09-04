@@ -1,3 +1,5 @@
 tests.rb
 testing_test.rb
 spec_test.rb
+cash_register.rb
+transaction.rb
