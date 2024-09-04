@@ -1,5 +1,7 @@
 # My Study Sheet for RB139 Exam:
 
+# Closures, Blocks, Procs, Lambdas...
+
 ## What is a Closure?
 
 A closure is a chunk of code that can reference variables and other methods that were defined within the lexical environment in which the closure was instantiated within, even after the execution of that lexical environment. Closures allow for a way to pass around chunks of code that can be executed, that can still access variables defined within lexical scope they were created within.
@@ -239,7 +241,26 @@ meth(1, 2, &my_proc) { "I'm another block being passed" }
 ---
 ---
 
-## Blocks are closures
+## Why Blocks Themselves Are Considered a Type of Closure
+
+In Ruby blocks are closures. How so?
+
+Blocks when instantiated are encapsulating and "remembering" the artifacts in their surrounding lexical scope. 
+
+This is demonstrated when a block is passed to a method as an argument. The block binds to other artifacts like variables and constants in its surrounding lexical scope. When the block yields in the method it still has access to those artifacts it's binded to.
+
+Here's an example to demonstrate:
+```ruby
+def some_method
+  yield
+end
+
+value = "Heyo"
+
+some_method { value } #=> "Heyo"
+```
+
+Despite the variable `value` being out of scope for `some_method`, the block passed to `some_method` can reference `value` and when it yields in `some_method` it's still able to return and reference `value`.
 
 ---
 ---
@@ -281,4 +302,199 @@ It's also worth noting that you cannot pass arguments to the `&:symbol` syntax l
 
 ---
 ---
+
+## Block Arity / Proc Arity / Method Arity / Lenient Arity / Strict Arity
+
+The term arity is used to describe how something takes arguments. 
+
+When something is described as having **lenient arity** this means it doesn't need to take the exact number of arguments as defined in the parameters, it could take more or less and won't raise any errors. Blocks and `Procs` have **lenient arity**.
+
+When something is described as **strict arity** this means it needs to take the exact number of arguments as defined in the parameters, if it isn't given the correct numbe rof arguments, it will raise an `ArgumentError`. Methods and `Lambda` objects are said to have strict arity.
+
+**Here is an example demonstrating leninent arity in blocks and `Proc` objects:**
+```ruby
+def a_method
+  x = 10
+  yield(x)
+end
+
+a_method { |x, y| puts "value x: #{x} | value y: #{y}"}
+# Outputs:
+# value x: 10 | value y: 
+
+def b_method(some_proc)
+  some_proc.call
+end
+
+my_proc = proc { |x, y| puts "value x: #{x} | value y: #{y}"}
+
+b_method(my_proc)
+# Outputs:
+# value x: | value y: 
+```
+
+As seen above, blocks and `Proc` objects don't need to have the exact number of arguments passed as defined in their block parameters. Any parameters that are not fulfilled or given as arguments will reference `nil` and no errors are raised.
+
+**Here is an example demonstrating strict arity in `Lambda` objects:**
+```ruby
+def b_method(a_lambda)
+  a_lambda.call
+end
+
+my_lambda = lambda { |x, y| puts "value x: #{x} | value y: #{y}"}
+
+b_method(my_lambda)
+# Error is raised:
+# wrong number of arguments (given 0, expected 2) (ArgumentError)
+```
+
+As seen above, the `Lambda` object needs to take the exact number of arguments as defined in the block parameters, `|x, y|`.
+
+The above glosses over a lot of other types of arguments used in Ruby, and is just a high-level overview of the concept of "arity". 
+
+---
+---
+
+## When Can You Pass a Block to a Method?
+
+All methods can accept a block. Whether a method does something with that block is up to the method's implementation. 
+
+If a method does not use the `yield` keyword in its' definition, the block will simply be ignored and won't be used.
+
+If a method uses the `yield` keyword (unconditionally) in its' definition, a block will yield to it and will be executed, otherwise if no block is passed to the method a `LocalJumpError` will be raised.
+
+Examples:
+```ruby
+def no_yield
+end
+
+def with_yield
+  yield
+end
+
+def explicit_block(&block)
+  block.call
+end
+
+def explicit_block_no_call(&block)
+end
+
+x = "Some value"
+
+no_yield   { x }             #=> nil
+with_yield { x }             #=> "Some value"
+explicit_block         { x } #=> "Some value"
+explicit_block_no_call { x } #=> nil
+```
+
+---
+---
+
+## Understand That Methods and Blocks Can Return Chunks of Code (closures)
+
+---
+---
+---
+---
+
+# Testing
+
+## Testing terminology
+
+### Test Suite
+
+Are the sets of tests for an entire application/program. These are all the tests for your application/program.
+
+### Tests
+
+Are a group of tests used to test a specific aspect of your application/program. A test can contain multiple assertions.
+
+### Assertions
+
+These can be thought of as the individual verfications that make up a test. This is a verification step to confirm that your code returns what is expected from an input or method.
+
+### DSL
+
+This is coding language that is used for a specific domain of coding or development. It has a specific and/or specialized purpose as opposed to being a general language. DSL's are often designed to be more readable with more abstractions as to be more useable to non-coders or domain-specific users. Unlike general purpose languages, DSL's are a little more restrictive in their use cases and are mainly centered around use in their specfic domain.
+
+Some examples of DSL's include:
+- Rake
+- Rspec
+- HTML
+
+### General-Purpose Lanugages
+
+These are coding languages that can be used in a wider variety of areas and are less restrictive in their use cases. General-purpose languages are generally harder to read when compared to DSL's and have less abstractions, requiring the user of the language to have deeper knowledge of programming and coding to fully use it. General-purpose languages have less restrictions, making them more flexible for use across many different domains.
+
+Some examples of General-purpose languages include:
+- Ruby
+- JavaScript
+- Python
+
+### Minitest vs. RSpec
+
+Minitest is a standard Ruby library that enables a user to test code using regular Ruby syntax. RSpec is a DSL that is used to test Ruby code. RSpec reads more like English and is more abstracted version of Ruby code that is used specfically for testing, hence it being considered a DSL.
+
+Both Minitest and RSpec can be installed via the `gem` command, although Minitest generally comes included with installations of Ruby.
+
+---
+---
+
+## Using Minitest
+
+### Setting Up A Test Suite
+
+To get started with Minitest you first have to `require` the respective Minitest autorun file and the file you want to test.
+
+**Here's an example:**
+
+```ruby
+require 'minitest/autorun'
+require 'sample_file.rb'
+```
+
+After loading the appropriate files for Minitest to run you then have to create a class with the naming convention of `ClassNameTest`, with the respective class' name you want to test for followed by `Test`, camel cased. 
+
+For this test class to have access to the methods it needs it needs to inherit from `Minitest::Test`. 
+
+Like this: `class ClassNameTest < Minitest::Test ;end`
+
+In this class you can define a `setup` instance method where you can create the setup for each test. This can include initializing common objects you will be using for each test or setting instance variables for objects.
+
+After this you can create other instance methods with the naming `test_` followed by the thing you want to test for. This naming convention is specific to Minitest and allows for Minitest to identify what methods to use for each test. An example of this naming convention could look like: `def test_returns_nil ;end`
+
+Within the `test_` instance methods you can create different assertions to verify for that test. Assertions come in the form of `assert` and `refute` named methods that can be used to make assertions (and refutations). Some examples of these methods include:
+- `assert_equal(expected, actual)`
+- `assert_instance_of(class, instance)`
+- `assert_includes(collection, obj)`
+- `assert_same(expected_obj, actual_obj)`
+
+After creating your tests with their assertions, you can now run the `ruby` command followed by the name of the testing file, like so: `ruby testing_file.rb`
+
+**Here's an example of what a test suite might look like:**
+
+```ruby
+require 'minitest/autorun'
+require 'sample_file.rb'
+
+class SampleClassTest < Minitest::Test
+  def setup
+    @obj = SampleObj.new
+  end
+
+  def test_instance_of_superclass
+    assert_instance_of(SampleSuperClass, @obj)
+  end
+
+  def test_is_apart_of_collection
+    assert_includes([1, 2, @obj], @obj)
+  end
+
+  def test_is_a_different_object
+    refute_same(SampleObj.new, @obj)
+  end
+end
+
+# All tests should be successful
+```
 
