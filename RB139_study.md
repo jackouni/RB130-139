@@ -498,3 +498,25 @@ end
 # All tests should be successful
 ```
 
+---
+---
+
+## SEAT Approach
+
+The **SEAT approach** is a series of steps that happen when testing. Each letter stands for a different step in the process, in that order.
+
+### S - Setup
+
+The setup, is where we set the variables and objects in place that we will be using for each test. This can generally include instantiating objects we'll be using for each test to setting instance variables. When using a testing app like Minitest, you can define a `setup` method that will run for each test. When setting up like this, repetition and tedious typing can be avoided, as we only have to write our `setup` once.
+
+### E - Execute
+
+This is where the code for the current test executes. In Minitest, this is the invocation of a `test_` instance method in the respective test class.
+
+### A - Assert
+
+This is where we verify and/or validate the results of the executed code for the current test. This is where we evaluate our assertions, checking to see if the expected values returned from an assertion are what is actually returned. 
+
+### T - Teardown
+
+This step happens after each test, this is where any remaining artifacts are removed and cleaned up in order to setup for the next test on a clean slate. This makes sure that artifacts from the current test don't interfere with the next test.
