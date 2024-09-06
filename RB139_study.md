@@ -4,9 +4,9 @@
 
 ## What is a Closure?
 
-A closure is a chunk of code that can reference variables and other methods that were defined within the lexical environment in which the closure was instantiated within, even after the execution of that lexical environment. Closures allow for a way to pass around chunks of code that can be executed, that can still access variables defined within lexical scope they were created within.
+A closure is a chunk of code that can reference artifacts (like variables and methods) that were defined within the lexical environment in which the closure was instantiated within, even after the execution of that lexical environment. Closures allow for a way to pass around chunks of code that can be executed that can still access variables defined within the lexical scope they were created within.
 
-Here's an example to demonstrate:
+**Here's an example to demonstrate:**
 
 ```ruby
 def some_method
@@ -23,7 +23,7 @@ p counter2.call(450) #=> 550
 p counter1.call(5)   #=> 25
 ```
 
-Generally closures can be created from return values of methods and blocks. 
+As seen in the above example a closure is created with the return value of `some_method`, a new `Proc` object. Each `Proc` returned from `some_method` has access to the their version of `x` that was initialized in the scope they were created within.
 
 ---
 ---
@@ -86,13 +86,6 @@ end
 In the above example we're opening a file *(`some_file_path/file.txt`)* and doing something with that file. Afterwards the `File::open` method will close the file.
 
 Here the hard-coded implementation of `File::open` is opening a file and then closing that file. The method user determines the implementation between the file opening and closing. The block in the example, that was passed to `File::open` is an example of a method user deciding implementation details between the *"before"* (opening a file) and *"after"* (closing a file) events.
-
----
----
-
-## Block Scope / Block Scoping Rules
-
-
 
 ---
 ---
@@ -309,46 +302,37 @@ The term arity is used to describe how something takes arguments.
 
 When something is described as having **lenient arity** this means it doesn't need to take the exact number of arguments as defined in the parameters, it could take more or less and won't raise any errors. Blocks and `Procs` have **lenient arity**.
 
-When something is described as **strict arity** this means it needs to take the exact number of arguments as defined in the parameters, if it isn't given the correct numbe rof arguments, it will raise an `ArgumentError`. Methods and `Lambda` objects are said to have strict arity.
+When something is described as **strict arity** this means it needs to take the exact number of arguments as defined in the parameters, if it isn't given the correct numbe rof arguments, it will raise an `ArgumentError`. Methods and lambdas are said to have strict arity.
 
-**Here is an example demonstrating leninent arity in blocks and `Proc` objects:**
+**Here is an example demonstrating leninent arity in `Proc` objects:**
 ```ruby
-def a_method
-  x = 10
-  yield(x)
-end
+my_proc = Proc.new { |x, y| puts "value x: #{x.inspect} | value y: #{y.inspect}"}
 
-a_method { |x, y| puts "value x: #{x} | value y: #{y}"}
+my_proc.call # No args passed
 # Outputs:
-# value x: 10 | value y: 
+# value x: nil | value y: nil
 
-def b_method(some_proc)
-  some_proc.call
-end
-
-my_proc = proc { |x, y| puts "value x: #{x} | value y: #{y}"}
-
-b_method(my_proc)
+my_proc.call(10) # Too few args passed
 # Outputs:
-# value x: | value y: 
+# value x: 10 | value y: nil
+
+my_proc.call("hi", "mid", "lo") # Too many args passed
+# Outputs:
+# value x: hi | value y: mid
 ```
 
-As seen above, blocks and `Proc` objects don't need to have the exact number of arguments passed as defined in their block parameters. Any parameters that are not fulfilled or given as arguments will reference `nil` and no errors are raised.
+As seen above, `Proc` objects don't need to have the exact number of arguments passed as defined in their block parameters. Any remaining arguments that are not fulfilled/given will reference `nil` and any extra arguments will be ignored. 
 
-**Here is an example demonstrating strict arity in `Lambda` objects:**
+**Here is an example demonstrating strict arity in lambdas:**
 ```ruby
-def b_method(a_lambda)
-  a_lambda.call
-end
-
 my_lambda = lambda { |x, y| puts "value x: #{x} | value y: #{y}"}
 
-b_method(my_lambda)
+my_lambda.call
 # Error is raised:
 # wrong number of arguments (given 0, expected 2) (ArgumentError)
 ```
 
-As seen above, the `Lambda` object needs to take the exact number of arguments as defined in the block parameters, `|x, y|`.
+As seen above, the lambda needs to take the exact number of arguments as defined in the block parameters, `|x, y|`.
 
 The above glosses over a lot of other types of arguments used in Ruby, and is just a high-level overview of the concept of "arity". 
 
@@ -372,7 +356,7 @@ def with_yield
   yield
 end
 
-def explicit_block(&block)
+def explicit_block_call(&block)
   block.call
 end
 
@@ -383,7 +367,7 @@ x = "Some value"
 
 no_yield   { x }             #=> nil
 with_yield { x }             #=> "Some value"
-explicit_block         { x } #=> "Some value"
+explicit_block_call    { x } #=> "Some value"
 explicit_block_no_call { x } #=> nil
 ```
 
@@ -391,6 +375,29 @@ explicit_block_no_call { x } #=> nil
 ---
 
 ## Understand That Methods and Blocks Can Return Chunks of Code (closures)
+
+Methods and blocks can return closures. This means they can return chunks of code that can maintain access to artifacts like other methods and variables that were initialized within the scope of the block or method. Here's an example of a method returning multiple closures (`Proc` objects), that have their own references to artifiacts initialized within the method:
+
+```ruby
+def closure_maker
+  hello = "Hello "
+
+  Proc.new { hello += hello }
+end
+
+closure1 = closure_maker
+closure2 = closure_maker
+
+closure1.call #=> Hello Hello
+closure1.call #=> Hello Hello Hello Hello
+closure1.call #=> Hello Hello Hello Hello Hello Hello Hello Hello 
+
+closure2.call #=> Hello Hello
+```
+
+As seen above, both `closure1` and `closure2` are returned from `closure_maker`, but each has their own reference to the individual `hello` variable that was initialized within the surrounding lexical environment they were created within. 
+
+When we call these `Proc` objects it becomes apparent that each has a reference to the `hello` that was initialized within their surrounding lexical environment.
 
 ---
 ---
