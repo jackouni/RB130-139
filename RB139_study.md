@@ -2,6 +2,41 @@
 
 # Closures, Blocks, Procs, Lambdas...
 
+## What are blocks?
+
+In Ruby, blocks are chunks of code contained between either `{...}` or `do...end` syntax **and** are associated with a method invocation. There are other code structures in Ruby that use block-like syntax but **are not** considered blocks. A couple examples of *non-block* Ruby code that uses block-like syntax include:
+
+```ruby
+hash = { a: 1, b: 2 } # Hash literals
+
+loop do # Looping structures (loop, while, until...)
+  break
+end
+```
+
+---
+---
+
+## Creating a Custom `loop` method:
+
+```ruby
+def my_loop(&block)
+  return if block.call
+  my_loop(&block)
+end
+
+counter = 0
+
+my_loop do
+  counter += 1
+  puts counter
+  counter == 10
+end
+```
+
+---
+---
+
 ## What is a Closure?
 
 A closure is a chunk of code that can reference artifacts (like variables and methods) that were defined within the lexical environment in which the closure was instantiated within, even after the execution of that lexical environment. Closures allow for a way to pass around chunks of code that can be executed that can still access variables defined within the lexical scope they were created within.
@@ -109,7 +144,7 @@ As seen above, the block argument passed to `my_method` is being executed. This 
 
 What's happening here is that the `&` operator being prepended to a method parameter, will attempt to convert the argument passed to a `Proc` object. The `Proc` is a way to store blocks as an object that can be passed around.
 
-Why do this? Like I said this is great if you want to pass a block around to other methods, something you can't do without an explicit block defined. Like so:
+Why do this? Like I said, this is great if you want to pass a block around to other methods, something you can't do without an explicit block defined. Like so:
 
 ```ruby
 def test1(&block)
@@ -135,6 +170,231 @@ test1 { puts "This explicit block is doing some work!" }
 ---
 ---
 
+## Custom `each` method
+
+### As a standalone method:
+```ruby
+arr = [2, 4, 6]
+
+def each(arr)
+  counter = 0
+
+  until counter >= arr.size do
+    yield(arr[counter])
+    counter += 1
+  end
+
+  arr
+end
+
+each(arr) { |item| puts item + 1 }
+# Output:
+# 3
+# 5
+# 7
+#=> [2, 4, 6]
+```
+
+### As an instance method:
+```ruby
+class Arr 
+  attr_accessor :items
+
+  def initialize(*items)
+    @items = items
+  end
+
+  def each 
+    items.each { |item| yield(item) }
+  end
+end
+
+Arr.new(1, 2, 3).each { |n| puts n * 10 }
+# Output:
+# 10
+# 20
+# 30
+#=> [1, 2, 3]
+```
+
+---
+---
+
+## Custom `map` method:
+
+### As a standalone method:
+
+```ruby
+arr = [2, 4, 6]
+
+def map(arr)
+  results = []
+  counter = 0
+
+  until counter >= arr.size do
+    item = arr[counter]
+    results << yield(item)
+    counter += 1
+  end
+
+  results
+end
+
+map(arr) { |item| item + 1 } #=> [3, 5, 7]
+```
+
+### As an instance method:
+
+```ruby
+class Arr 
+  attr_accessor :items
+
+  def initialize(*items)
+    @items = items
+  end
+
+  def map 
+    items.map { |item| yield(item) }
+  end
+end
+
+Arr.new(1, 2, 3).map { |n| n * 10 } #=> [10, 20, 30]
+```
+
+---
+---
+
+## Custom `select` method:
+
+### As a standalone method:
+
+```ruby
+arr = [2, 4, 6, 8, 9]
+
+def select(arr)
+  selected = []
+  counter = 0
+
+  until counter >= arr.size do
+    item = arr[counter]
+    selected << item if yield(item) 
+    counter += 1
+  end
+
+  selected
+end
+
+select(arr) { |item| item % 3 == 0 } #=> [3, 9]
+```
+
+### As an instance method:
+
+```ruby
+class Arr 
+  attr_accessor :items
+
+  def initialize(*items)
+    @items = items
+  end
+
+  def select 
+    items.select { |item| yield(item) }
+  end
+end
+
+Arr.new(1, 2, 3, 4).select { |n| n.even? } #=> [2, 4]
+```
+
+---
+---
+
+## Custom `reduce` method:
+
+### As a standalone method:
+
+```ruby
+arr = [2, 4, 6]
+
+def reduce(arr, accumulator = 0)
+  acc = accumulator
+  counter = 0
+
+  until counter >= arr.size do
+    item = arr[counter]
+    acc = yield(acc, item) 
+    counter += 1
+  end
+
+  acc
+end
+
+reduce(arr) { |acc, item| acc + item } #=> 12
+```
+
+### As an instance method:
+
+```ruby
+class Arr 
+  attr_accessor :items
+
+  def initialize(*items)
+    @items = items
+  end
+
+  def reduce(acc = 0)
+    items.reduce(acc) { |acc, item| yield(acc, item) }
+  end
+end
+
+Arr.new(1, 2, 3, 4).reduce { |acc, n| acc + n } #=> 10
+```
+
+---
+---
+
+## Custom `each_with_object` method:
+
+### As a standalone method:
+
+```ruby
+arr = [2, 4, 6]
+
+def each_with_object(arr, obj)
+  counter = 0
+
+  until counter >= arr.size do
+    item = arr[counter]
+    yield(item, obj)
+    counter += 1
+  end
+
+  obj
+end
+
+p each_with_object(arr, []) { |item, obj| obj << item*100 } #=> [200, 400, 600]
+```
+
+### As an instance method:
+
+```ruby
+class Arr 
+  attr_accessor :items
+
+  def initialize(*items)
+    @items = items
+  end
+
+  def each_with_object(acc = 0)
+    items.each_with_object({}) { |item, obj| yield(item, obj) }
+  end
+end
+
+p Arr.new(1, 2, 3).each_with_object { |n, obj| obj[n.to_s] = n.to_f } #=> { "1" => 1.0, "2" => 2.0, "3" => 3.0 }
+```
+
+---
+---
+
 ## Using `&` Operator
 
 The `&` operator has 2 main purporses:
@@ -146,7 +406,7 @@ When prepended to the name of a method parameter, the `&` operator will convert 
 **Example:**
 
 ```ruby
-def meth(a, b, &block)
+def my_method(a, b, &block)
   puts a 
   puts b 
   puts block.call
@@ -160,9 +420,9 @@ meth(1, 2) { "Hello World" }
 # Hello World
 ```
 
-The block, `{ "Hello World" }` is being converted a `Proc` object in `meth`, and is referenced by the parameter `block`.
+The block, `{ "Hello World" }` is being converted a `Proc` object in `my_method`, and is referenced by the parameter `block`.
 
-***Weird quirk:***
+###### ***Weird quirk:***
 
 The block still exists, and you can still `yield` it to the method, but now there's a `Proc` version of the block to use too. See this tweaked example:
 ```ruby
@@ -188,14 +448,14 @@ When prepended to an argument, the `&` operator will attempt to convert the give
 
 Here's an example:
 ```ruby
-def meth(a, b)
+def my_method(a, b)
   puts a 
   puts b 
   puts yield
 end
 
 my_proc = Proc.new { "Hello World" }
-meth(1, 2, &my_proc) 
+my_method(1, 2, &my_proc) 
 
 # Outputs:
 # 1
@@ -203,28 +463,25 @@ meth(1, 2, &my_proc)
 # Hello World
 ```
 
-As seen above, there's no need to define a parameter for the `Proc`, `my_proc`, passed to `meth`. The `&` operator prepended to `my_proc` will convert `my_proc` to a block that can then `yield` to the method.
+As seen above, there's no need to define a parameter for the `Proc`, `my_proc`, passed to `my_method`. The `&` operator prepended to `my_proc` will convert `my_proc` to a block that can then `yield` to the method.
 
-***Another tidbit:***
+###### ***Another tidbit:***
 
-You can only pass either a block or a block argument with `&`, NOT both. If this is attempted and error will be raised with this message: `both block arg and actual block given`
+You can only pass either a block or a block argument with `&`, NOT both. If this is attempted an error will occur with this message: `both block arg and actual block given`
 
-Here's an example that would not work and would raise that error:
+**Here's an example that would not work and would raise that error:**
 
 ```ruby
-def meth(a, b)
+def my_method(a, b)
   puts a 
   puts b 
   puts yield
 end
 
 my_proc = Proc.new { "Hello World" }
-meth(1, 2, &my_proc) { "I'm another block being passed" }
-
-# Outputs:
-# 1
-# 2
-# Hello World
+my_method(1, 2, &my_proc) { "I'm another block being passed" }
+# Error message:
+# both block arg and actual block given
 ```
 
 **An easy way to remember which scenario does what you can say:**
@@ -238,11 +495,12 @@ meth(1, 2, &my_proc) { "I'm another block being passed" }
 
 In Ruby blocks are closures. How so?
 
-Blocks when instantiated are encapsulating and "remembering" the artifacts in their surrounding lexical scope. 
+Blocks, when created, are able to reference and access the artifacts in their surrounding lexical scope. 
 
-This is demonstrated when a block is passed to a method as an argument. The block binds to other artifacts like variables and constants in its surrounding lexical scope. When the block yields in the method it still has access to those artifacts it's binded to.
+This is demonstrated when a block is passed to a method as an argument. The block can reference artifacts like variables in its surrounding lexical environment. When the block yields in the method it still has access to those artifacts it's binded to.
 
-Here's an example to demonstrate:
+**Here's an example to demonstrate:**
+
 ```ruby
 def some_method
   yield
@@ -260,11 +518,12 @@ Despite the variable `value` being out of scope for `some_method`, the block pas
 
 ## `Symbol#to_proc` / Symbol to Proc
 
-When the `&` operator is prepended to an argument, it attempts to convert the given argument to a block. If the argument is a `Proc` object `&` naturally converts it to a block to `yield` in the method. If the argument is not a `Proc` object then `&` will attempt to first conver the given argument to a `Proc` using the `#to_proc` method. 
+When the `&` operator is prepended to an argument, it attempts to convert the given argument to a block. If the argument is a `Proc` object `&` naturally converts it to a block to `yield` in the method. If the argument is not a `Proc` object then `&` will attempt to first convert the given argument to a `Proc` using the `#to_proc` method. 
 
 In the case of `Symbol` objects as arugments with `&` prepended, the `Symbol#to_proc` method is called to convert the `Symbol` into a `Proc`. When this is done, a method with the same name as the `Symbol` is converted to its `Proc` counterpart. From here, the `Proc` is then converted into a block.
 
 **Here's a custom example to demonstrate:**
+
 ```ruby
 class Item
   def initialize(value)
