@@ -520,3 +520,97 @@ This is where we verify and/or validate the results of the executed code for the
 ### T - Teardown
 
 This step happens after each test, this is where any remaining artifacts are removed and cleaned up in order to setup for the next test on a clean slate. This makes sure that artifacts from the current test don't interfere with the next test.
+
+---
+---
+---
+---
+
+# Ruby Tools
+
+## Version Managers
+
+Version managers for Ruby allow you to install and use different versions of Ruby for different projects. Version managers keep track of what version of Ruby you're using for a specific project and help navigate from using one version of Ruby to another.
+
+### Rbenv 
+
+Is a version manager used to install Rubies as well as to switch between different versions of Ruby for different projects, making navigating between specific Rubies for specific projects easier and more seamless.
+
+**Some important commands:**
+1. `rbenv versions`
+> This displays the versions of Ruby you have installed with rbenv and shows you which version you're currently working with in the directory you're currently in.
+
+2. `rbenv root`
+> Shows the where the rbenv directory is located in your machine.
+
+3. `rbenv global RUBY_VERSION`
+> Sets the default version of Ruby to use for any Ruby project.
+
+4. `rbenv local RUBY_VERSION`
+> Sets the version of Ruby to use for the current directory you're in and its sub-directories.
+
+5. `rbenv install RUBY_VERSION`
+> Installs the specified Ruby version to the rbenv directory.
+
+6. `brew install ruby-build`
+> Not a rbenv command, but a plugin (for Mac, using homebrew) that is necessary to install in order to more easily install Ruby versions using the rbenv command.
+
+7. `rbenv rehash`
+> Rehashes shims to ensure rbenv is aware of all installed executables.
+
+8. `gem env`
+> Again, not a rbenv command, but useful for trouble shooting and configuring. This command will display relevant information about how `RubyGems` is set up on your machine.
+
+### RVM
+
+---
+---
+
+## RubyGems
+
+RubyGems are packages or libraries of code that can be downloaded from the RubyGems repository, `rubygems.org` . These libraries can include pre-made/pre-built code that can be used by developers in their application to assist them in coding. This can range anywhere from tools, testing apps, to stylizing apps, and etc.
+
+---
+---
+
+## Dependency Managers
+
+A dependency manager is a tool that can be used to help maintain gems/packages installed for a specific project. Similar to how Ruby version managers manage multiple versions of Ruby for different projects, dependency managers manage multiple versions of gems/packages across different projects.
+
+**Some things a dependency manager does in Ruby:**
+1. Declaring project dependencies in a single file (`Gemfile`)
+2. Installing and updating gems and their dependencies
+3. Ensuring consistency of gem versions across different development environments
+
+## Bundler
+
+Bundler is the main dependency manager used for Ruby projects.
+
+### Gemfile
+
+This is a file that you create (`GemFile`) where you define the gems and the versions of those gems that you'll be installing for a given project. Bundler uses this `GemFile` to reference when managing dependencies. You can think of a `GemFile` as a set of instructions on how to configure your project's dependencies.
+
+### Gemfile.lock
+
+Once the `bundle install` command runs, Bundler reads the `GemFile` and downloads the defined gems from the `GemFile` along with their own dependencies. Each gem generally has multiple other files and gems to be installed along with it. The `GemFile.lock` is the file bundler produces that shows you what gems are currently installed for the project along with all the dependencies installed for each of those gems as well.
+
+It can be thought of as a current record of what gems and gem-dependencies are installed for the current project.
+
+---
+---
+
+## Rake
+
+Rake is an automation tool commonly installed and used for Ruby projects. Rake is generally used for reptitive or common tasks, commands or functions you run during the development process of a project.
+
+### RakeFile
+
+A RakeFile is where you specify the commands and automations you would like to run.
+
+---
+---
+
+## Rubocop
+
+---
+---

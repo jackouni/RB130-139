@@ -54,6 +54,29 @@
   </div>
 
   
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Ruby+Installation">Ruby Installation</a>
+    <li><a href="#label-Terminology">Terminology</a>
+    <li><a href="#label-Minitest">Minitest</a>
+    <li><a href="#label-Installation+of+Minitest">Installation of Minitest</a>
+    <li><a href="#label-Setting+up">Setting up</a>
+    <li><a href="#label-Reading+Outputs">Reading Outputs</a>
+    <li><a href="#label-Skipping+a+Test">Skipping a Test</a>
+    <li><a href="#label-Types+of+Assertions">Types of Assertions</a>
+    <li><a href="#label-23assert-28arg-29"><code>#assert(arg)</code></a>
+    <li><a href="#label-23assert_equal-28expected-2C+actual-29"><code>#assert_equal(expected, actual)</code></a>
+    <li><a href="#label-23assert_nil-28arg-29"><code>#assert_nil(arg)</code></a>
+    <li><a href="#label-23assert_raises-28-2Aerror-29+-7B...-7D"><code>#assert_raises(*error) {...}</code></a>
+    <li><a href="#label-23assert_instance_of-28class-2C+obj-29"><code>#assert_instance_of(class, obj)</code></a>
+    <li><a href="#label-23assert_includes-28collection-2C+obj-29"><code>#assert_includes(collection, obj)</code></a>
+    <li><a href="#label-The+SEAT+Approach">The SEAT Approach</a>
+    <li><a href="#label-Notes+on+Comparing+Equality">Notes on Comparing Equality</a>
+  </ul>
+</div>
+
 
   <div id="project-metadata">
     
@@ -61,15 +84,17 @@
   <h3>Pages</h3>
 
   <ul class="link-list">
+    <li><a href="./RB130_exercises_md.html">RB130_exercises</a>
+    <li><a href="./RB139_study_md.html">RB139_study</a>
     <li><a href="./README_md.html">README</a>
-    <li><details><summary>coverage</summary>
-    <ul class="link-list">
-      <li><a href="./coverage/assets/0_12_3/application_css.html">application.css</a>
-      <li><a href="./coverage/assets/0_12_3/application_js.html">application.js</a>
-      <li><a href="./coverage/index_html.html">index.html</a>
-    </ul></details>
+    <li><a href="./blocks_procs_closures_md.html">blocks_procs_closures</a>
+    <li><a href="./coverage/assets/0_12_3/application_css.html">application.css</a>
+    <li><a href="./coverage/assets/0_12_3/application_js.html">application.js</a>
+    <li><a href="./coverage/index_html.html">index.html</a>
+    <li><a href="./gemfiles_md.html">gemfiles</a>
     <li><a href="./ruby_challenges_md.html">ruby_challenges</a>
     <li><a href="./ruby_tools_md.html">ruby_tools</a>
+    <li><a href="./sample_text_txt.html">sample_text</a>
   </ul>
 </div>
 
@@ -78,13 +103,435 @@
 
 <main role="main" aria-label="Page ruby_tools.md">
 
+<h1 id="label-Ruby+Installation">Ruby Installation<span><a href="#label-Ruby+Installation">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>“Ruby installation” refers to how the Ruby programming language ends up on your development environment. The <em>“development environment”</em> can refer to either the machine you’re working on or the cloud-based environment you’re working on, like cloud9.</p>
+
+<p>MacOS usually comes with Ruby already on it. You can check what version of Ruby is installed on your Mac machine using the terminal command: <code>/usr/bin/ruby -v</code></p>
+
+<p>This is usually not optimal though, as the version of Ruby installed with MacOS is probably outdated. On top of this, the Ruby that is on your Mac needs root access to make any modifications to other Ruby components you may have installed. Ideally developers want to avoid directly logging in as root user, and sometimes developers don’t have access to root user privelages which can make this hard to use.</p>
+<hr>
+<hr>
+
+<h1 id="label-Terminology">Terminology<span><a href="#label-Terminology">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>“<strong>DSL (Domain Specific Language)</strong>”</p>
+
+<blockquote>
+<p>Is a language that is designed to be used and fit a specific need. It isn’t a <strong>General Programming Language</strong> <em>(like Ruby, JavaScript, Python, etc…)</em> because it can’t be used in a wider more broad sense. This is language designed specifically for a certain task or problem.</p>
+</blockquote>
+
+<p>“<strong>Test Suite</strong>”</p>
+
+<blockquote>
+<p>A “<em>test suite</em>” refers to all of the tests being run for your program.</p>
+</blockquote>
+
+<p>“<strong>Test</strong>”</p>
+
+<blockquote>
+<p>These are the individual tests that make up a test suite. Tests can contain multiple assertions.</p>
+</blockquote>
+
+<p>“<strong>Assertion</strong>”</p>
+
+<blockquote>
+<p>You can think of an “<em>assertion</em>” a way to verify/check if specific data in your code returns an expected output, given some conditions. An assertion allows us to test an assumption about our code to see if it’s true.</p>
+</blockquote>
+<hr>
+<hr>
+
+<h1 id="label-Minitest">Minitest<span><a href="#label-Minitest">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>This is the standard testing software for Ruby.</p>
+
+<p>There is also RSpec, but Minitest is Ruby’s standard testing library.</p>
+
+<h3 id="label-Installation+of+Minitest">Installation of Minitest<span><a href="#label-Installation+of+Minitest">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>To install MiniTest run the command: <code>gem install minitest</code></p>
+
+<p>To check what version you have run command: <code>gem list minitest</code></p>
+
+<p>To install a specific version of minitest run: <code>gem install minitest -v &lt;version number&gt;</code></p>
+
+<h3 id="label-Setting+up">Setting up<span><a href="#label-Setting+up">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Once we have Minitest installed we can create a test file that will represent a test suite for a file. The general naming convention here is that the test file should be the name of the file we’re testing with ‘_test.rb’ appended. So if you’re testing a <code>game.rb</code> file, then you should call the testing file <code>game_test.rb</code>.</p>
+
+<p>At the top of the test file you need to load 2 other files: 1. Minitest files that’ll you’ll be using 2. The file you want to test</p>
+
+<p>The top of your testing file should look like this:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;minitest/autorun&#39;</span> <span class="ruby-comment"># Loads parts of Minitest we want to use</span>
+<span class="ruby-identifier">require_relative</span> <span class="ruby-string">&#39;game.rb&#39;</span> <span class="ruby-comment"># Loads in the file we want to test on</span>
+
+<span class="ruby-comment"># ...</span>
+</pre>
+
+<p>Let’s say our <code>game.rb</code> looks like this:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Person</span>
+  <span class="ruby-identifier">attr_accessor</span> <span class="ruby-value">:name</span>, <span class="ruby-value">:age</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span>)
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@age</span> = <span class="ruby-identifier">age</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Next step is to set up your specific tests in your <code>game_test.rb</code> file:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;minitest/autorun&#39;</span> 
+<span class="ruby-identifier">require_relative</span> <span class="ruby-string">&#39;game.rb&#39;</span> 
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> <span class="ruby-comment">#=&gt; This inheritance happens in order to get Minitest methods we need</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name</span> <span class="ruby-comment">#=&gt; Define a method with `test` prepended. This tells Minitest that this is a test.</span>
+    <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)   <span class="ruby-comment">#=&gt; Create the conditions you want to test under</span>
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-identifier">joe</span>.<span class="ruby-identifier">name</span>) <span class="ruby-comment">#=&gt; Use an assertion method to check an assertion</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>There are a bunch of <em>assertion methods</em> that come with Minitest. It can be assumed that in our test above that <code>assert_equal</code> is a method that is being inheritted from somewhere up the hierarchy chain.</p>
+
+<p><code>assert_equal</code> takes 2 arguments: 1. The value you expect 2. The test value</p>
+
+<h3 id="label-Reading+Outputs">Reading Outputs<span><a href="#label-Reading+Outputs">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If everything goes well our test should return something like this:</p>
+
+<pre># Running: 
+
+PersonTest .
+
+Finished in 0.000324s, 2132.1961 runs/s, 2132.1961 assertions/s.
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips</pre>
+
+<p>What do these all mean?</p>
+
+<p>The second line <code>PersonTest .</code> tells us that the <code>PersonTest</code> tests ran.</p>
+
+<p>The dot in this line shows that the test ran and nothing went wrong. If it failed it would show an <code>F</code> and if it was skipped it would show a <code>S</code></p>
+
+<p>So what happens if a test failed? For example:</p>
+
+<pre class="ruby"><span class="ruby-comment"># ... require statements hidden for brevity</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name</span> 
+    <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)   
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-identifier">joe</span>.<span class="ruby-identifier">name</span>) 
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name_again</span>
+    <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&#39;James&#39;</span>, <span class="ruby-identifier">joe</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>If we ran minitest it would result in an output like this:</p>
+
+<pre># Running:
+
+PersonTest F.
+
+Finished in 0.000493s, 4056.7949 runs/s, 4056.7949 assertions/s.
+
+1) Failure:
+PersonTest#test_name_again [game_test.rb:&lt;line number&gt;]:
+Expected: &#39;Joe&#39;
+  Actual: &#39;James&#39;
+
+2 runs, 2 assertions, 1 failures, 0 errors, 0 skips</pre>
+
+<p>As you can see the first line tells us that <code>PersonTest</code> test had 1 failure, <code>F</code>, and 1 pass, <code>.</code>.</p>
+
+<p>Further down we can see that Minitest will tell us the <code>Failure</code>, what line the assertion failed as well as the expected value VS the actual value.</p>
+
+<p>And on the final line it can be seen that there were 2 runs (both defined tests), 2 assertions (the single <code>assert_equal</code> methods in each test), 1 failure (the last assertion method that failed), 0 errors in running the tests themselves, and 0 tests skipped.</p>
+
+<p><strong>Add some color:</strong> You can <code>gem install minitest-reporters</code> and then add this code to the header of your testing file:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;minitest/reporters&quot;</span> <span class="ruby-comment"># Loads the files to color-code your test outputs</span>
+<span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Reporters</span>.<span class="ruby-identifier">use!</span>     <span class="ruby-comment"># Method call that invokes the use of the color-coding</span>
+</pre>
+
+<h3 id="label-Skipping+a+Test">Skipping a Test<span><a href="#label-Skipping+a+Test">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Sometimes you’ll want to skip certain tests for whatever reasons. To skip a test all you have to do is add the <code>skip</code> method call within the test methods.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-comment"># ... require statements hidden for brevity</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name</span> 
+    <span class="ruby-identifier">skip</span>
+    <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)   
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-identifier">joe</span>.<span class="ruby-identifier">name</span>) 
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_age</span>
+    <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">30</span>, <span class="ruby-identifier">joe</span>.<span class="ruby-identifier">age</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This will skip the <code>test_name</code> test and will be shown as a ‘skip’ in the Minitest output.</p>
+
+<h3 id="label-Types+of+Assertions">Types of Assertions<span><a href="#label-Types+of+Assertions">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>| Assertion | Description | | ——— | ———– | | assert(test) | Fails unless test is truthy. | | assert_equal(exp, act) | Fails unless exp == act. | | assert_nil(obj) | Fails unless obj is nil. | | assert_raises(exp) { … } | Fails unless block raises one of exp. | | assert_instance_of(cls, obj) | Fails unless obj is an instance of cls. | | assert_includes(collection, obj) | Fails unless collection includes obj. |</p>
+
+<h5 id="label-23assert-28arg-29"><code>#assert(arg)</code><span><a href="#label-23assert-28arg-29">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<blockquote>
+<p>If the <code>arg</code> is truthy, the test passes, otherwise it fails.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_instantiation</span>
+   <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)   
+   <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">joe</span>) 
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</blockquote>
+
+<h5 id="label-23assert_equal-28expected-2C+actual-29"><code>#assert_equal(expected, actual)</code><span><a href="#label-23assert_equal-28expected-2C+actual-29">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<blockquote>
+<p>If <code>expected</code> is equal in value to <code>actual</code> (<code>expected == actual</code>), then the test passes, otherwise it fails.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name</span> 
+   <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)   
+   <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-identifier">joe</span>.<span class="ruby-identifier">name</span>) 
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</blockquote>
+
+<h5 id="label-23assert_nil-28arg-29"><code>#assert_nil(arg)</code><span><a href="#label-23assert_nil-28arg-29">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<blockquote>
+<p>The test passes if <code>arg</code> is equal to <code>nil</code>, otherwise the test fails.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_undefined_age</span> 
+   <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>)   
+   <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">joe</span>.<span class="ruby-identifier">age</span>) 
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</blockquote>
+
+<h5 id="label-23assert_raises-28-2Aerror-29+-7B...-7D"><code>#assert_raises(*error) {...}</code><span><a href="#label-23assert_raises-28-2Aerror-29+-7B...-7D">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<blockquote>
+<p>The test passes if the given block raises one of the <code>error</code> passed, otherwise the test fails</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_too_many_arguments</span> 
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>  
+    <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>, <span class="ruby-value">100</span>)
+  <span class="ruby-keyword">end</span>  
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</blockquote>
+
+<h5 id="label-23assert_instance_of-28class-2C+obj-29"><code>#assert_instance_of(class, obj)</code><span><a href="#label-23assert_instance_of-28class-2C+obj-29">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<blockquote>
+<p>Test passes if <code>obj</code> is an instance of <code>class</code>, otherwise the test fails.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_person_instance_of</span>
+  <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+  <span class="ruby-identifier">assert_instance_of</span>(<span class="ruby-constant">Person</span>, <span class="ruby-identifier">joe</span>)
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</blockquote>
+
+<h5 id="label-23assert_includes-28collection-2C+obj-29"><code>#assert_includes(collection, obj)</code><span><a href="#label-23assert_includes-28collection-2C+obj-29">&para;</a> <a href="#top">&uarr;</a></span></h5>
+
+<blockquote>
+<p>The test passes if <code>obj</code> is included in the <code>collection</code>, otherwise it fails.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_including_person</span>
+  <span class="ruby-identifier">joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+  <span class="ruby-identifier">arr</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+  <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">joe</span>
+  <span class="ruby-identifier">assert_includes</span>(<span class="ruby-identifier">arr</span>, <span class="ruby-identifier">joe</span>)
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</blockquote>
+<hr>
+<hr>
+
+<h1 id="label-The+SEAT+Approach">The SEAT Approach<span><a href="#label-The+SEAT+Approach">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>In the above examples we had to recreate our <code>Person</code> object for each test. This is tedious and can take up a lot of time. This is where the <strong>S E A T</strong> approach comes in!</p>
+
+<p><em>SEAT</em> is a series of steps that happen between each test that runs that allows for cleaner and more efficient testing. There are 4 main steps to <em>SEAT</em>:</p>
+<ol><li>
+<p><strong>S - Set up</strong></p>
+</li></ol>
+
+<p>This involves setting up the test objects and/or conditions we want for our tests</p>
+<ol><li>
+<p><strong>E - Execute</strong></p>
+</li></ol>
+
+<p>This is where we execute the code in our tests</p>
+<ol><li>
+<p><strong>A - Assertions</strong></p>
+</li></ol>
+
+<p>This is where we check our assertions for a given test</p>
+<ol><li>
+<p><strong>T - Tear Down</strong></p>
+</li></ol>
+
+<p>This is where we tear down all of our objects and conditions we had set up for the given test, getting rid of any left over artifacts.</p>
+
+<p>So far we’ve been doing steps 2 and 3. Here’s how we can use step 1 in our test:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">setup</span> <span class="ruby-comment"># This is where our tests will setup every time</span>
+    <span class="ruby-ivar">@joe</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name</span>    
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-ivar">@joe</span>.<span class="ruby-identifier">name</span>) 
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_age</span>
+    <span class="ruby-identifier">assert</span>(<span class="ruby-value">30</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@joe</span>.<span class="ruby-identifier">age</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_instantiation</span>   
+    <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@joe</span>) 
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_too_many_arguments</span> 
+   <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">ArgumentError</span>) <span class="ruby-keyword">do</span>  
+     <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;James&#39;</span>, <span class="ruby-value">31</span>, <span class="ruby-value">100</span>)
+   <span class="ruby-keyword">end</span>  
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_person_instance_of</span>
+   <span class="ruby-identifier">assert_instance_of</span>(<span class="ruby-constant">Person</span>, <span class="ruby-ivar">@joe</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_including_person</span>
+   <span class="ruby-identifier">arr</span> = [<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>]
+   <span class="ruby-identifier">arr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@joe</span>
+   <span class="ruby-identifier">assert_includes</span>(<span class="ruby-identifier">arr</span>, <span class="ruby-ivar">@joe</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>By defining a <code>setup</code> instance method, Minitest will invoke this for each test that runs. This will reassign a new instance of <code>Person</code>. This functions as both the <em>Setup</em> and the <em>Tear Down</em>.</p>
+<hr>
+<hr>
+
+<h1 id="label-Notes+on+Comparing+Equality">Notes on Comparing Equality<span><a href="#label-Notes+on+Comparing+Equality">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>When we use these <code>assert</code> methods, how is it comparing the arguments passed?</p>
+
+<p>Remembering that custom made objects by default will use the method <code>BasicObject#==</code> to compare equality. This means it’s comparing two objects based on if they are the <strong><em>exact</em></strong> same (same <code>object_id</code>).</p>
+
+<p>So if you are going to use these <code>assert</code> methods you need to make sure you define a <code>#==</code> method to compare any two instances of a custom made class you’re testing.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">PersonTest</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Minitest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span> 
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_name</span>    
+    <span class="ruby-identifier">person1</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+    <span class="ruby-identifier">person2</span> = <span class="ruby-constant">Person</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Joe&#39;</span>, <span class="ruby-value">30</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">person2</span>, <span class="ruby-identifier">person1</span>) 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This test will fail. Here’s what it will roughly output:</p>
+
+<pre>Run options: --seed 39620
+
+# Running:
+
+F
+
+Finished in 0.019319s, 51.7625 runs/s, 51.7625 assertions/s.
+
+  1) Failure:
+PersonTest#test_name [tests.rb:20]:
+No visible difference in the Person#inspect output.
+You should look at the implementation of #== on Person or its members.
+#&lt;Person:0xXXXXXX @name=&quot;Joe&quot;, @age=30&gt;
+
+1 runs, 1 assertions, 1 failures, 0 errors, 0 skips</pre>
+
+<p>Here ^^ Minitest is literally telling you what the problem is. It’s explaining that it doesn’t know how to compare two <code>Person</code> objects and is suggesting the implementtion of a <code>Person#==</code> method.</p>
+
+<p>Let’s take its advice and do just that:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Person</span>
+  <span class="ruby-identifier">attr_accessor</span> <span class="ruby-value">:name</span>, <span class="ruby-value">:age</span>
+  
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">age</span>)
+    <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+    <span class="ruby-ivar">@age</span> = <span class="ruby-identifier">age</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">==</span>(<span class="ruby-identifier">other_person</span>)
+    <span class="ruby-identifier">other_person</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Person</span>) <span class="ruby-operator">&amp;&amp;</span> 
+    <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other_person</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&amp;&amp;</span> 
+    <span class="ruby-identifier">age</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other_person</span>.<span class="ruby-identifier">age</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Now that we’ve added a <code>Person#==</code> method, there’s now a way for Minitest to compare two <code>Person</code> instances in the way we want it to. Now we get our typical passing-tests output:</p>
+
+<pre>Run options: --seed 3530
+
+# Running:
+
+.
+
+Finished in 0.000505s, 1980.1980 runs/s, 1980.1980 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips</pre>
+
 </main>
 
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

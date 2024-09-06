@@ -1,5 +1,9 @@
-Thu, 15 Aug 2024 21:07:09 -0400
+Thu, 05 Sep 2024 21:04:20 -0400
+RB130_exercises.md	Wed, 04 Sep 2024 20:34:08 -0400
+RB139_study.md	Thu, 05 Sep 2024 20:57:21 -0400
 README.md	Thu, 18 Jul 2024 11:00:45 -0400
+blocks_procs_closures.md	Wed, 21 Aug 2024 21:36:23 -0400
+cash_register.rb	Wed, 04 Sep 2024 19:59:40 -0400
 coverage/assets/0.12.3/DataTables-1.10.20/images/sort_asc.png	Mon, 12 Aug 2024 20:54:34 -0400
 coverage/assets/0.12.3/DataTables-1.10.20/images/sort_asc_disabled.png	Mon, 12 Aug 2024 20:54:34 -0400
 coverage/assets/0.12.3/DataTables-1.10.20/images/sort_both.png	Mon, 12 Aug 2024 20:54:34 -0400
@@ -30,13 +34,12 @@ coverage/assets/0.12.3/images/ui-icons_cd0a0a_256x240.png	Mon, 12 Aug 2024 20:54
 coverage/assets/0.12.3/loading.gif	Mon, 12 Aug 2024 20:54:34 -0400
 coverage/assets/0.12.3/magnify.png	Mon, 12 Aug 2024 20:54:34 -0400
 coverage/index.html	Mon, 12 Aug 2024 20:54:34 -0400
-hamming_distance.rb	Tue, 13 Aug 2024 07:18:15 -0400
-ruby_challenges.md	Thu, 15 Aug 2024 18:37:18 -0400
-ruby_tools.md	Thu, 15 Aug 2024 18:38:46 -0400
-spec_test.rb	Mon, 29 Jul 2024 00:37:13 -0400
-temp.rb	Sun, 04 Aug 2024 02:35:00 -0400
-testing_test.rb	Sun, 04 Aug 2024 02:34:49 -0400
-tests.rb	Wed, 14 Aug 2024 22:52:08 -0400
-todo_list.rb	Wed, 07 Aug 2024 00:58:22 -0400
-todolist_test.rb	Wed, 07 Aug 2024 22:54:58 -0400
-triangles_problem.rb	Tue, 13 Aug 2024 07:07:13 -0400
+gemfiles.md	Sun, 18 Aug 2024 11:26:26 -0400
+ruby_challenges.md	Thu, 05 Sep 2024 20:52:25 -0400
+ruby_tools.md	Tue, 20 Aug 2024 22:37:17 -0400
+sample_text.txt	Wed, 04 Sep 2024 21:13:47 -0400
+tests.rb	Wed, 04 Sep 2024 21:39:09 -0400
+tests2.rb	Wed, 04 Sep 2024 20:12:07 -0400
+todo_list.rb	Fri, 23 Aug 2024 18:06:12 -0400
+todolist_test.rb	Wed, 21 Aug 2024 08:00:52 -0400
+transaction.rb	Wed, 04 Sep 2024 20:12:05 -0400

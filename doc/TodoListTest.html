@@ -73,12 +73,8 @@
 
   <ul class="link-list" role="directory">
     <li ><a href="#method-i-setup">#setup</a>
-    <li ><a href="#method-i-test_add">#test_add</a>
-    <li ><a href="#method-i-test_add_raise_error">#test_add_raise_error</a>
     <li ><a href="#method-i-test_done-21">#test_done!</a>
-    <li ><a href="#method-i-test_done_question">#test_done_question</a>
-    <li ><a href="#method-i-test_each">#test_each</a>
-    <li ><a href="#method-i-test_each_return">#test_each_return</a>
+    <li ><a href="#method-i-test_done-3F">#test_done?</a>
     <li ><a href="#method-i-test_first">#test_first</a>
     <li ><a href="#method-i-test_item_at">#test_item_at</a>
     <li ><a href="#method-i-test_last">#test_last</a>
@@ -86,13 +82,11 @@
     <li ><a href="#method-i-test_mark_undone_at">#test_mark_undone_at</a>
     <li ><a href="#method-i-test_pop">#test_pop</a>
     <li ><a href="#method-i-test_remove_at">#test_remove_at</a>
-    <li ><a href="#method-i-test_select">#test_select</a>
     <li ><a href="#method-i-test_shift">#test_shift</a>
     <li ><a href="#method-i-test_shovel">#test_shovel</a>
     <li ><a href="#method-i-test_size">#test_size</a>
     <li ><a href="#method-i-test_to_a">#test_to_a</a>
-    <li ><a href="#method-i-test_to_s">#test_to_s</a>
-    <li ><a href="#method-i-test_to_s_2">#test_to_s_2</a>
+    <li ><a href="#method-i-test_type_error">#test_type_error</a>
   </ul>
 </div>
 
@@ -120,24 +114,24 @@
        </header>
 
       <div id="method-i-setup" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">setup</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">setup</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="setup-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 11</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">setup</span>
   <span class="ruby-ivar">@todo1</span> = <span class="ruby-constant">Todo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Buy milk&quot;</span>)
   <span class="ruby-ivar">@todo2</span> = <span class="ruby-constant">Todo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Clean room&quot;</span>)
   <span class="ruby-ivar">@todo3</span> = <span class="ruby-constant">Todo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Go to gym&quot;</span>)
   <span class="ruby-ivar">@todos</span> = [<span class="ruby-ivar">@todo1</span>, <span class="ruby-ivar">@todo2</span>, <span class="ruby-ivar">@todo3</span>]
+
+  <span class="ruby-ivar">@sample_todo</span> = <span class="ruby-constant">Todo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Brush Teeth&quot;</span>)
 
   <span class="ruby-ivar">@list</span> = <span class="ruby-constant">TodoList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Today&#39;s Todos&quot;</span>)
   <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@todo1</span>)
@@ -150,101 +144,21 @@
 
       </div>
 
-      <div id="method-i-test_add" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_add</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="test_add-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_add</span>
-  <span class="ruby-identifier">new_todo</span> = <span class="ruby-constant">Todo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sample Todo&quot;</span>)
-  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">new_todo</span>)
-  <span class="ruby-ivar">@todos</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_todo</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todos</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-test_add_raise_error" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_add_raise_error</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="test_add_raise_error-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_add_raise_error</span>
-  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">TypeError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">1</span>) }
-  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">TypeError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;hi&#39;</span>) }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
       <div id="method-i-test_done-21" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_done!</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_done!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_done-21-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 95</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_done!</span>
-  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done!</span> 
-  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done?</span>, <span class="ruby-keyword">true</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done?</span>, <span class="ruby-keyword">true</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-test_done_question" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_done_question</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="test_done_question-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_done_question</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">false</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done?</span>)
   <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done!</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">true</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done?</span>)
+  <span class="ruby-ivar">@todos</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done?</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -252,50 +166,20 @@
 
       </div>
 
-      <div id="method-i-test_each" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_each</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+      <div id="method-i-test_done-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">test_done?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
-          <div class="method-source-code" id="test_each-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 133</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_each</span>
-  <span class="ruby-identifier">counter</span> = <span class="ruby-value">0</span>
-
-  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todos</span>[<span class="ruby-identifier">counter</span>], <span class="ruby-identifier">todo</span>)
-    <span class="ruby-identifier">counter</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-test_each_return" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_each_return</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="test_each_return-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 142</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_each_return</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@list</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> })
+          <div class="method-source-code" id="test_done-3F-source">
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_done?</span>
+  <span class="ruby-identifier">refute</span>(<span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done?</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -304,19 +188,17 @@
       </div>
 
       <div id="method-i-test_first" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_first</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_first</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_first-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 32</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_first</span>
   <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo1</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">first</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -327,23 +209,21 @@
       </div>
 
       <div id="method-i-test_item_at" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_item_at</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_item_at</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_item_at-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 72</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_item_at</span>
-  <span class="ruby-identifier">todo_at</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">1</span>)
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">todo_at</span>, <span class="ruby-ivar">@todo2</span>)
-  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">3</span>) }
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo2</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">1</span>))
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo1</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">0</span>))
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">10</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -352,19 +232,17 @@
       </div>
 
       <div id="method-i-test_last" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_last</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_last</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_last-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 36</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_last</span>
   <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo3</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">last</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -375,23 +253,23 @@
       </div>
 
       <div id="method-i-test_mark_done_at" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_mark_done_at</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_mark_done_at</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_mark_done_at-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 83</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_mark_done_at</span>
-  <span class="ruby-identifier">marked_todo</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_done_at</span>(<span class="ruby-value">1</span>)
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">marked_todo</span>.<span class="ruby-identifier">done?</span>, <span class="ruby-keyword">true</span>)
-  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">3</span>) }
+  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_done_at</span>(<span class="ruby-value">1</span>)
+  
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@todo2</span>.<span class="ruby-identifier">done?</span>)
+  <span class="ruby-identifier">refute</span>(<span class="ruby-ivar">@todo1</span>.<span class="ruby-identifier">done?</span>)
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_done_at</span>(<span class="ruby-value">10</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -400,23 +278,24 @@
       </div>
 
       <div id="method-i-test_mark_undone_at" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_mark_undone_at</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_mark_undone_at</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_mark_undone_at-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 89</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_mark_undone_at</span>
-  <span class="ruby-identifier">unmarked_todo</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_undone_at</span>(<span class="ruby-value">1</span>)
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">unmarked_todo</span>.<span class="ruby-identifier">done?</span>, <span class="ruby-keyword">false</span>)
-  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">item_at</span>(<span class="ruby-value">3</span>) }
+  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">done!</span>
+  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_undone_at</span>(<span class="ruby-value">1</span>)
+
+  <span class="ruby-identifier">refute</span>(<span class="ruby-ivar">@todo2</span>.<span class="ruby-identifier">done?</span>)
+  <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@todo1</span>.<span class="ruby-identifier">done?</span>)
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_undone_at</span>(<span class="ruby-value">10</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -425,12 +304,10 @@
       </div>
 
       <div id="method-i-test_pop" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_pop</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_pop</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
@@ -439,9 +316,8 @@
           <div class="method-source-code" id="test_pop-source">
             <pre><span class="ruby-comment"># File todolist_test.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_pop</span>
-  <span class="ruby-identifier">popped_todo</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">pop</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo3</span>, <span class="ruby-identifier">popped_todo</span>)
-  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-ivar">@todo1</span>, <span class="ruby-ivar">@todo2</span>], <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo3</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">pop</span>)
+  <span class="ruby-identifier">refute_includes</span>(<span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>, <span class="ruby-ivar">@todo3</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -450,52 +326,21 @@
       </div>
 
       <div id="method-i-test_remove_at" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_remove_at</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_remove_at</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_remove_at-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 103</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_remove_at</span>
-  <span class="ruby-identifier">removed_todo</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">remove_at</span>(<span class="ruby-value">1</span>)
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">removed_todo</span>, <span class="ruby-ivar">@todo2</span>)
+  <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">remove_at</span>(<span class="ruby-value">1</span>)
   <span class="ruby-identifier">assert_equal</span>([<span class="ruby-ivar">@todo1</span>, <span class="ruby-ivar">@todo3</span>], <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>)
-  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">remove_at</span>(<span class="ruby-value">500</span>) }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-test_select" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_select</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="test_select-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 147</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_select</span>
-  <span class="ruby-ivar">@todo1</span>.<span class="ruby-identifier">done!</span>
-  <span class="ruby-identifier">list</span> = <span class="ruby-constant">TodoList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@list</span>.<span class="ruby-identifier">title</span>)
-  <span class="ruby-identifier">list</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@todo1</span>)
-
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">list</span>.<span class="ruby-identifier">title</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">title</span>)
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">list</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">todo</span><span class="ruby-operator">|</span> <span class="ruby-identifier">todo</span>.<span class="ruby-identifier">done?</span> }.<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">IndexError</span>) { <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">remove_at</span>(<span class="ruby-value">10</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -504,23 +349,20 @@
       </div>
 
       <div id="method-i-test_shift" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_shift</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_shift</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_shift-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 40</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_shift</span>
-  <span class="ruby-identifier">shifted_todo</span> = <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">shift</span>
-  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo1</span>, <span class="ruby-identifier">shifted_todo</span>)
-  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-ivar">@todo2</span>, <span class="ruby-ivar">@todo3</span>], <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todo1</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">shift</span>)
+  <span class="ruby-identifier">refute_includes</span>(<span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>, <span class="ruby-ivar">@todo1</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -529,23 +371,22 @@
       </div>
 
       <div id="method-i-test_shovel" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_shovel</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_shovel</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_shovel-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 65</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_shovel</span>
-  <span class="ruby-identifier">new_todo</span> = <span class="ruby-constant">Todo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sample Todo&quot;</span>)
-  <span class="ruby-ivar">@list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_todo</span>
-  <span class="ruby-ivar">@todos</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_todo</span>
+  <span class="ruby-ivar">@list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@sample_todo</span>
+  <span class="ruby-ivar">@todos</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@sample_todo</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">4</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">size</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@list</span>.<span class="ruby-identifier">last</span>, <span class="ruby-ivar">@sample_todo</span>)
   <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todos</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -555,19 +396,17 @@
       </div>
 
       <div id="method-i-test_size" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_size</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_size</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
           <div class="method-source-code" id="test_size-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 28</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_size</span>
   <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">3</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">size</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -578,19 +417,17 @@
       </div>
 
       <div id="method-i-test_to_a" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_to_a</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        <div class="method-heading">
+          <span class="method-name">test_to_a</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           <p>Your tests go here. Remember they must start with “test_”</p>
 
           <div class="method-source-code" id="test_to_a-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 24</span>
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_to_a</span>
   <span class="ruby-identifier">assert_equal</span>(<span class="ruby-ivar">@todos</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_a</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -600,61 +437,22 @@
 
       </div>
 
-      <div id="method-i-test_to_s" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_to_s</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+      <div id="method-i-test_type_error" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">test_type_error</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
           
 
-          <div class="method-source-code" id="test_to_s-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 110</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_to_s</span>
-    <span class="ruby-identifier">output</span> = <span class="ruby-identifier">&lt;&lt;~OUTPUT</span>.<span class="ruby-identifier">chomp</span>
-<span class="ruby-value">    ---- Today&#39;s Todos ----
-    [ ] Buy milk
-    [ ] Clean room
-    [ ] Go to gym
-</span><span class="ruby-identifier">    OUTPUT</span>
-
-    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">output</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_s</span>)
-  <span class="ruby-keyword">end</span></pre>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-test_to_s_2" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">test_to_s_2</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
-
-        <div class="method-description">
-          
-
-          <div class="method-source-code" id="test_to_s_2-source">
-            <pre><span class="ruby-comment"># File todolist_test.rb, line 121</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_to_s_2</span>
-    <span class="ruby-identifier">output</span> = <span class="ruby-identifier">&lt;&lt;~OUTPUT</span>.<span class="ruby-identifier">chomp</span>
-<span class="ruby-value">    ---- Today&#39;s Todos ----
-    [ ] Buy milk
-    [X] Clean room
-    [ ] Go to gym
-</span><span class="ruby-identifier">    OUTPUT</span>
-
-    <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">mark_done_at</span>(<span class="ruby-value">1</span>)
-    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">output</span>, <span class="ruby-ivar">@list</span>.<span class="ruby-identifier">to_s</span>)
-  <span class="ruby-keyword">end</span></pre>
+          <div class="method-source-code" id="test_type_error-source">
+            <pre><span class="ruby-comment"># File todolist_test.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">test_type_error</span>
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">TypeError</span>) { <span class="ruby-ivar">@list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">1</span> }
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">TypeError</span>) { <span class="ruby-ivar">@list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;hello&quot;</span> }
+<span class="ruby-keyword">end</span></pre>
           </div>
         </div>
 
@@ -669,7 +467,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
