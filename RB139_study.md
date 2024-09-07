@@ -173,6 +173,7 @@ test1 { puts "This explicit block is doing some work!" }
 ## Custom `each` method
 
 ### As a standalone method:
+
 ```ruby
 arr = [2, 4, 6]
 
@@ -196,6 +197,7 @@ each(arr) { |item| puts item + 1 }
 ```
 
 ### As an instance method:
+
 ```ruby
 class Arr 
   attr_accessor :items
@@ -390,6 +392,58 @@ class Arr
 end
 
 p Arr.new(1, 2, 3).each_with_object { |n, obj| obj[n.to_s] = n.to_f } #=> { "1" => 1.0, "2" => 2.0, "3" => 3.0 }
+```
+
+---
+---
+
+## Custom `times` method:
+
+### As a standalone method:
+
+```ruby
+def times(num)
+  counter = 0
+
+  until counter == num
+    yield(counter)
+    counter += 1
+  end
+
+  num
+end
+
+times(4) { |n| puts n }
+# Outputs: 
+# 1
+# 2
+# 3
+#=> 4
+```
+
+### As a custom instance method:
+
+```ruby
+class Int
+  attr_reader :int
+
+  def initialize(int)
+    @int = int
+  end
+
+  def times
+    (0...int).each { |n| yield(n) }
+    int
+  end
+end
+
+Int.new(4).times { |n| puts n*10 } 
+# Outputs: 
+# 0
+# 10
+# 20
+# 30
+#=> 4
 ```
 
 ---
